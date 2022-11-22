@@ -22,14 +22,8 @@ export class SelectOptionsGroupsComponent implements OnInit {
   isExpandCategory: boolean[] = [];
   states = new FormControl();
 
-  expandDocumentTypes(group: any, groupIndex: number) {
-    console.log('expanding dropdown', group);
-    // this.isExpandCategory[group.groupLabel] =
-    //   !this.isExpandCategory[group.groupLabel];
-
-    // this.isExpandCategory[groupIndex] = !this.isExpandCategory[groupIndex];
+  expandDocumentTypes(group: any) {
     group.selected = !group.selected;
-    // expand only selected parent dropdown category with that childs
   }
 
   optionClicked(name: string, index?: number) {
@@ -37,8 +31,6 @@ export class SelectOptionsGroupsComponent implements OnInit {
   }
 
   toggleSelection(event: any, group: any) {
-    //console.log(group);
-    //console.log(event.checked);
     let states = this.states.value;
     states = states ? states : [];
     if (event.checked) {
@@ -47,10 +39,9 @@ export class SelectOptionsGroupsComponent implements OnInit {
       group.options.forEach((x: string) => states.splice(states.indexOf(x), 1));
     }
     this.states.setValue(states);
-    //console.log(states);
-    // console.log(this.states.value);
-    // here select all childs for this particular group
   }
+
+
 
   optionsGroups = [
     {
@@ -167,6 +158,7 @@ export class SelectOptionsGroupsComponent implements OnInit {
       selected: false
     },
   ];
+
   // #endregion
 
 
@@ -176,4 +168,14 @@ export class SelectOptionsGroupsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+}
+
+export interface DropdownOptionsGroups {
+  label: string;
+  groups: MatOptionsGroup;
+}
+
+export interface MatOptionsGroup {
+  groupLabel: string;
+  options: string[];
 }
