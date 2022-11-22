@@ -47,47 +47,47 @@ export class SelectOptionsGroupsComponent implements OnInit {
     {
       groupLabel: 'A',
       options: ['Alabama', 'Alaska', 'Arizona', 'Arkansas'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'C',
       options: ['California', 'Colorado', 'Connecticut'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'D',
       options: ['Delaware'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'F',
       options: ['Florida'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'G',
       options: ['Georgia'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'H',
       options: ['Hawaii'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'I',
       options: ['Idaho', 'Illinois', 'Indiana', 'Iowa'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'K',
       options: ['Kansas', 'Kentucky'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'L',
       options: ['Louisiana'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'M',
@@ -101,7 +101,7 @@ export class SelectOptionsGroupsComponent implements OnInit {
         'Missouri',
         'Montana',
       ],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'N',
@@ -115,12 +115,12 @@ export class SelectOptionsGroupsComponent implements OnInit {
         'North Carolina',
         'North Dakota',
       ],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'O',
       options: ['Ohio', 'Oklahoma', 'Oregon'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'P',
@@ -130,32 +130,32 @@ export class SelectOptionsGroupsComponent implements OnInit {
     {
       groupLabel: 'R',
       options: ['Rhode Island'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'S',
       options: ['South Carolina', 'South Dakota'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'T',
       options: ['Tennessee', 'Texas'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'U',
       options: ['Utah'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'V',
       options: ['Vermont', 'Virginia'],
-      selected: false
+      isSelected: false
     },
     {
       groupLabel: 'W',
       options: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-      selected: false
+      isSelected: false
     },
   ];
 
@@ -178,4 +178,6 @@ export interface DropdownOptionsGroups {
 export interface MatOptionsGroup {
   groupLabel: string;
   options: string[];
+
+  isSelected: boolean
 }
