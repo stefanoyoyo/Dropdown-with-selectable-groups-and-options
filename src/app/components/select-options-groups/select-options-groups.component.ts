@@ -57,4 +57,6 @@ export interface MatOptionsGroup {
 
 export interface DropdownOptionsGroupsConfig {
   canClose: boolean;
+
+  style?: any;
 }

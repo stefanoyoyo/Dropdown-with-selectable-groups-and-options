@@ -15,7 +15,10 @@ export class AppComponent {
   componentData: DropdownOptionsGroups = {
     name: 'ciao mondo',
     config: {
-      canClose: false
+      canClose: false,
+      style: {
+        width: '1000px !important',
+      }
     },
     groups: optionsGroups as MatOptionsGroup[]
   };
