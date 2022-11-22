@@ -35,7 +35,7 @@
           (change)="toggleSelection($event, group)"
           (click)="$event.stopPropagation()"
         >
-          {{ group.groupLabel }}
+          {{ group.groupName }}
         </mat-checkbox>
         <!-- Triangolo per l'apertura del gruppo -->
         <button mat-button (click)="expandDocumentTypes(group)">
@@ -53,5 +53,4 @@
       </mat-option>
     </mat-optgroup>
   </mat-select>
-  <!-- </mat-autocomplete> -->
 </mat-form-field>
