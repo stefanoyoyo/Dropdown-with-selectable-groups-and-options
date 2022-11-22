@@ -45,6 +45,7 @@ export class SelectOptionsGroupsComponent implements OnInit {
 
 export interface DropdownOptionsGroups {
   name: string;
+  config: DropdownOptionsGroupsConfig;
   groups: MatOptionsGroup[];
 }
 
@@ -52,4 +53,8 @@ export interface MatOptionsGroup {
   groupName: string;
   options: string[];
   isSelected: boolean
+}
+
+export interface DropdownOptionsGroupsConfig {
+  canClose: boolean;
 }

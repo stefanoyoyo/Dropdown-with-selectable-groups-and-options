@@ -14,6 +14,9 @@ export class AppComponent {
 
   componentData: DropdownOptionsGroups = {
     name: 'ciao mondo',
+    config: {
+      canClose: false
+    },
     groups: optionsGroups as MatOptionsGroup[]
   };
 }

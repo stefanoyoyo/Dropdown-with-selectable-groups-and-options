@@ -35,7 +35,7 @@
         *ngFor="let name of group.options; let i = index"
         [value]="name"
         (click)="optionClicked(name, i)"
-        [ngClass]="group.isSelected ? 'list-show' : 'list-hide'"
+        [ngClass]="optionsGroups.config.canClose ? (group.isSelected ? 'list-show' : 'list-hide') : ''"
       >
         {{ name }}
       </mat-option>
