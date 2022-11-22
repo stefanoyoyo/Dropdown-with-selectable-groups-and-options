@@ -44,7 +44,7 @@ export class SelectOptionsGroupsComponent implements OnInit {
 }
 
 export interface DropdownOptionsGroups {
-  label: string;
+  name: string;
   groups: MatOptionsGroup[];
 }
 

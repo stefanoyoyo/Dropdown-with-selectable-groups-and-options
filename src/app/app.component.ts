@@ -13,7 +13,7 @@ export class AppComponent {
   appData = optionsGroups;
 
   componentData: DropdownOptionsGroups = {
-    label: 'ciao mondo',
+    name: 'ciao mondo',
     groups: optionsGroups as MatOptionsGroup[]
   };
 }
