@@ -17,7 +17,8 @@ export class SelectOptionsGroupsComponent implements OnInit {
   }
 
   public optionClicked(name: string, index?: number) {
-    console.log('Selected option: ', name, 'having id: ', index);
+    // console.log('Selected option: ', name, 'having id: ', index);
+    this.optionsGroups.optionClicked(name);
   }
 
   public toggleSelection(event: any, group: any) {
@@ -29,6 +30,7 @@ export class SelectOptionsGroupsComponent implements OnInit {
       group.options.forEach((x: string) => states.splice(states.indexOf(x), 1));
     }
     this.states.setValue(states);
+    this.optionsGroups.groupClicked(group);
   }
 
 
@@ -47,6 +49,9 @@ export interface DropdownOptionsGroups {
   name: string;
   config: DropdownOptionsGroupsConfig;
   groups: MatOptionsGroup[];
+
+  groupClicked: (group: any) => void;
+  optionClicked: (option: any) => void;
 }
 
 export interface MatOptionsGroup {
@@ -57,6 +62,5 @@ export interface MatOptionsGroup {
 
 export interface DropdownOptionsGroupsConfig {
   canClose: boolean;
-
   style?: any;
 }

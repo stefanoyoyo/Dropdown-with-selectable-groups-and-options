@@ -20,6 +20,16 @@ export class AppComponent {
         width: '1000px !important',
       }
     },
-    groups: optionsGroups as MatOptionsGroup[]
+    groups: optionsGroups as MatOptionsGroup[],
+
+    groupClicked: function (param: any): void {
+      console.log('groupClicked callback called')
+      console.log(param)
+    },
+
+    optionClicked: function (param: any): void {
+      console.log('optionClicked callback called')
+      console.log(param)
+    }
   };
 }
