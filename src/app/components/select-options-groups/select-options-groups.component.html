@@ -1,10 +1,7 @@
 <div class="container">
-  ciao
-
-
 <!-- Tendina con i gruppi  -->
 <mat-form-field appearance="fill">
-  <mat-label>Toppings</mat-label>
+  <mat-label>{{ optionsGroups.label }}</mat-label>
   <mat-select [formControl]="states" multiple>
     <mat-select-trigger>
       {{ states.value ? states.value[0] : "" }}
