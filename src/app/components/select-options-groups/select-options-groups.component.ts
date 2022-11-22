@@ -12,15 +12,15 @@ export class SelectOptionsGroupsComponent implements OnInit {
   isExpandCategory: boolean[] = [];
   states = new FormControl();
 
-  expandDocumentTypes(group: any) {
+  public expandDocumentTypes(group: any) {
     group.isSelected = !group.isSelected;
   }
 
-  optionClicked(name: string, index?: number) {
+  public optionClicked(name: string, index?: number) {
     console.log('Selected option: ', name, 'having id: ', index);
   }
 
-  toggleSelection(event: any, group: any) {
+  public toggleSelection(event: any, group: any) {
     let states = this.states.value;
     states = states ? states : [];
     if (event.checked) {
