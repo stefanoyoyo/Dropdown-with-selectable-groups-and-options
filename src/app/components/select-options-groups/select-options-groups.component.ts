@@ -7,14 +7,7 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./select-options-groups.component.scss']
 })
 export class SelectOptionsGroupsComponent implements OnInit {
-
-  // #region tendina 2
-
-  // #region mock data
-
   @Input() optionsGroups: any;
-
-  // #endregion
 
   isExpandCategory: boolean[] = [];
   states = new FormControl();
