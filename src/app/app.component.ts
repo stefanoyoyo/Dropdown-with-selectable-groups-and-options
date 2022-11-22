@@ -14,6 +14,7 @@ export class AppComponent {
 
   componentData: DropdownOptionsGroups = {
     label: 'ciao mondo',
+    // groups: optionsGroups as any // []
     groups: optionsGroups as any // []
   };
 }
