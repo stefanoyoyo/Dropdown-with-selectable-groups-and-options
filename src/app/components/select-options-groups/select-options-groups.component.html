@@ -1,9 +1,12 @@
-ciao
+<div class="container">
+  ciao
 
-<mat-form-field>
-  <mat-select placeholder="Favorite food">
-    <mat-option *ngFor="let food of foods" [value]="food.value">
-      {{ food.viewValue }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <!-- Esempio prima tendina -->
+  <mat-form-field>
+    <mat-select placeholder="Favorite food">
+      <mat-option *ngFor="let food of foods" [value]="food.value">
+        {{ food.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

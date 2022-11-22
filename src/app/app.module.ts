@@ -18,7 +18,7 @@ import { DemoMaterialModule } from 'src/modules/material-module';
     BrowserAnimationsModule,
     DemoMaterialModule
   ],
-  providers: [],
+  providers: [SelectOptionsGroupsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
