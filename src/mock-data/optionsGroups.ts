@@ -1,51 +1,51 @@
-export const optionsGroup = [
+export const optionsGroups = [
   {
-    groupLabel: 'A',
+    groupName: 'A',
     options: ['Alabama', 'Alaska', 'Arizona', 'Arkansas'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'C',
+    groupName: 'C',
     options: ['California', 'Colorado', 'Connecticut'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'D',
+    groupName: 'D',
     options: ['Delaware'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'F',
+    groupName: 'F',
     options: ['Florida'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'G',
+    groupName: 'G',
     options: ['Georgia'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'H',
+    groupName: 'H',
     options: ['Hawaii'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'I',
+    groupName: 'I',
     options: ['Idaho', 'Illinois', 'Indiana', 'Iowa'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'K',
+    groupName: 'K',
     options: ['Kansas', 'Kentucky'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'L',
+    groupName: 'L',
     options: ['Louisiana'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'M',
+    groupName: 'M',
     options: [
       'Maine',
       'Maryland',
@@ -56,10 +56,10 @@ export const optionsGroup = [
       'Missouri',
       'Montana',
     ],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'N',
+    groupName: 'N',
     options: [
       'Nebraska',
       'Nevada',
@@ -70,46 +70,46 @@ export const optionsGroup = [
       'North Carolina',
       'North Dakota',
     ],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'O',
+    groupName: 'O',
     options: ['Ohio', 'Oklahoma', 'Oregon'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'P',
+    groupName: 'P',
     options: ['Pennsylvania'],
     selected: false
   },
   {
-    groupLabel: 'R',
+    groupName: 'R',
     options: ['Rhode Island'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'S',
+    groupName: 'S',
     options: ['South Carolina', 'South Dakota'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'T',
+    groupName: 'T',
     options: ['Tennessee', 'Texas'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'U',
+    groupName: 'U',
     options: ['Utah'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'V',
+    groupName: 'V',
     options: ['Vermont', 'Virginia'],
-    selected: false
+    isSelected: false
   },
   {
-    groupLabel: 'W',
+    groupName: 'W',
     options: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-    selected: false
+    isSelected: false
   },
 ];
