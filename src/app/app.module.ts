@@ -3,14 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SelectOptionsGroupsComponent } from './components/select-options-groups/select-options-groups.component';
+import { DemoMaterialModule } from 'src/modules/material-module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SelectOptionsGroupsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    DemoMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
