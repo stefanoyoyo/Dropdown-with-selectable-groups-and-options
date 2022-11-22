@@ -7,13 +7,13 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./select-options-groups.component.scss']
 })
 export class SelectOptionsGroupsComponent implements OnInit {
-  @Input() optionsGroups: any;
+  @Input() optionsGroups: DropdownOptionsGroups = {} as DropdownOptionsGroups;
 
   isExpandCategory: boolean[] = [];
   states = new FormControl();
 
   expandDocumentTypes(group: any) {
-    group.selected = !group.selected;
+    group.isSelected = !group.isSelected;
   }
 
   optionClicked(name: string, index?: number) {

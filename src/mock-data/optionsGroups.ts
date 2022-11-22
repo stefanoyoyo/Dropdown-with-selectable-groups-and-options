@@ -80,7 +80,7 @@ export const optionsGroups = [
   {
     groupName: 'P',
     options: ['Pennsylvania'],
-    selected: false
+    isSelected: false
   },
   {
     groupName: 'R',
