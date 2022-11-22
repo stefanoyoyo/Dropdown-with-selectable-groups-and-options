@@ -159,6 +159,8 @@ export class SelectOptionsGroupsComponent implements OnInit {
     },
   ];
 
+
+
   // #endregion
 
 
@@ -178,6 +180,5 @@ export interface DropdownOptionsGroups {
 export interface MatOptionsGroup {
   groupLabel: string;
   options: string[];
-
   isSelected: boolean
 }
