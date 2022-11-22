@@ -10,3 +10,41 @@
     </mat-select>
   </mat-form-field>
 </div>
+
+<!-- Tendina con i gruppi  -->
+<mat-form-field appearance="fill">
+  <mat-label>Toppings</mat-label>
+    <!-- <input type="text" matInput placeholder="States Group" formControlName="MatOptionsGroup" required [matAutocomplete]="autoGroup">
+     <mat-autocomplete #autoGroup="matAutocomplete"> -->
+  <mat-select [formControl]="states" multiple>
+    <mat-select-trigger>
+      {{states.value ? states.value[0] : ''}}
+      <span *ngIf="states.value?.length > 1" class="example-additional-selection">
+        (+{{states.value.length - 1}} {{states.value?.length === 2 ? 'other' : 'others'}})
+      </span>
+    </mat-select-trigger>
+
+  <mat-optgroup *ngFor="let group of optionsGroups; let i = index; ">
+          <div>
+            <!-- Checkbox del gruppo -->
+          <mat-checkbox [checked]="group.selected" (change)="toggleSelection($event, group)"
+            (click)="$event.stopPropagation()">
+			        {{group.groupLabel}}
+		    	</mat-checkbox>
+          <!-- Triangolo per l'apertura del gruppo -->
+          <button mat-button (click)="expandDocumentTypes(group, i)">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+          </div>
+          <!-- Options di ogni gruppo -->
+          <mat-option *ngFor="let name of group.options; let i = index;"
+             [value]="name"
+             (click)="optionClicked(name, i)"
+             [ngClass]="group.selected ? 'list-show' : 'list-hide'">
+            {{name}}
+          </mat-option>
+  </mat-optgroup>
+
+  </mat-select>
+     <!-- </mat-autocomplete> -->
+</mat-form-field>

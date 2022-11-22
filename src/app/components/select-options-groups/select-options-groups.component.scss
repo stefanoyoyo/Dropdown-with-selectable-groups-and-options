@@ -3,3 +3,16 @@
   flex-direction: column;
   width: 300px;
 }
+
+mat-option {
+  position: relative;
+  left: 1em;
+}
+
+.list-hide {
+  height: 0 !important;
+}
+
+.list-show {
+  height: auto !important;
+}
