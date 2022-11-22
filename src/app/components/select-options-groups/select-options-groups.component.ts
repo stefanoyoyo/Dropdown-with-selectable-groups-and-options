@@ -8,16 +8,6 @@ import { FormControl } from '@angular/forms';
 })
 export class SelectOptionsGroupsComponent implements OnInit {
 
-  // #region tendina 1
-
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-
-  // #endregion
-
   // #region tendina 2
 
   // #region mock data
