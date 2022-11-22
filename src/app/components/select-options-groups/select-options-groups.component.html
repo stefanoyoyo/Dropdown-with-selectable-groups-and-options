@@ -20,7 +20,7 @@
         <!-- Checkbox del gruppo -->
         <mat-checkbox
           [checked]="group.isSelected"
-          (change)="toggleSelection($event, group)"
+          (change)="groupClicked($event, group)"
           (click)="$event.stopPropagation()"
         >
           {{ group.groupName }}

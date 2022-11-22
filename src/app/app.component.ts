@@ -10,8 +10,6 @@ import { DropdownOptionsGroups, MatOptionsGroup } from './components/select-opti
 export class AppComponent {
   title = 'SelectwithGroups';
 
-  appData = optionsGroups;
-
   componentData: DropdownOptionsGroups = {
     name: 'ciao mondo',
     config: {
@@ -24,12 +22,19 @@ export class AppComponent {
 
     groupClicked: function (param: any): void {
       console.log('groupClicked callback called')
-      console.log(param)
+      // console.log(param)
     },
 
     optionClicked: function (param: any): void {
       console.log('optionClicked callback called')
-      console.log(param)
+      // console.log(param)
     }
   };
+
+  constructor() {
+    let time = 2500;
+    setInterval(() => {
+      console.log(this.componentData)
+    }, 2500);
+  }
 }

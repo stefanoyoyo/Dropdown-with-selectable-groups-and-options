@@ -8,8 +8,6 @@ import { FormControl } from '@angular/forms';
 })
 export class SelectOptionsGroupsComponent implements OnInit {
   @Input() optionsGroups: DropdownOptionsGroups = {} as DropdownOptionsGroups;
-
-  isExpandCategory: boolean[] = [];
   states = new FormControl();
 
   public expandDocumentTypes(group: any) {
@@ -17,11 +15,10 @@ export class SelectOptionsGroupsComponent implements OnInit {
   }
 
   public optionClicked(name: string, index?: number) {
-    // console.log('Selected option: ', name, 'having id: ', index);
     this.optionsGroups.optionClicked(name);
   }
 
-  public toggleSelection(event: any, group: any) {
+  public groupClicked(event: any, group: any) {
     let states = this.states.value;
     states = states ? states : [];
     if (event.checked) {
@@ -30,6 +27,7 @@ export class SelectOptionsGroupsComponent implements OnInit {
       group.options.forEach((x: string) => states.splice(states.indexOf(x), 1));
     }
     this.states.setValue(states);
+    group.isSelected = !group.isSelected;
     this.optionsGroups.groupClicked(group);
   }
 
