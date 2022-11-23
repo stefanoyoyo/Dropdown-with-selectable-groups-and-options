@@ -36,8 +36,8 @@
           [value]="name"
           (click)="optionClicked(name, i)"
           [ngClass]="
-            optionsGroups.config.canClose
-              ? group.isSelected
+            optionsGroups.config.canCloseGroups
+              ? group.isOpened
                 ? 'list-show'
                 : 'list-hide'
               : ''

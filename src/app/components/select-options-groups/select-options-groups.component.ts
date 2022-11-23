@@ -11,8 +11,17 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   @Input() optionsGroups: DropdownOptionsGroups = {} as DropdownOptionsGroups;
   states = new FormControl();
 
+
+  constructor() {
+  }
+
+  ngAfterViewInit(): void {
+    this.mySelect.open();
+    this.applyDropdownHeightWhenOpened();
+  }
+
   public expandDocumentTypes(group: any) {
-    group.isSelected = !group.isSelected;
+    group.isOpened = !group.isOpened;
   }
 
   public optionClicked(name: string, index?: number) {
@@ -36,15 +45,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.applyDropdownHeightWhenOpened();
     this.mySelect.open();
     this.optionsGroups.onSelectOpened();
-  }
-
-  // #endregion
-
-  constructor() {}
-
-  ngAfterViewInit(): void {
-    this.mySelect.open();
-    this.applyDropdownHeightWhenOpened();
   }
 
   applyDropdownHeightWhenOpened() {
@@ -71,7 +71,6 @@ export interface DropdownOptionsGroups {
   /**Callbacks */
   onGroupClicked: (group?: any) => void;
   onOptionClicked: (option?: any) => void;
-
   onSelectOpened: (option?: any) => void;
   onSelectClosed: (option?: any) => void;
 }
@@ -80,10 +79,11 @@ export interface MatOptionsGroup {
   groupName: string;
   options: string[];
   isSelected: boolean;
+  isOpened: boolean;
 }
 
 export interface DropdownOptionsGroupsConfig {
-  canClose: boolean;
+  canCloseGroups: boolean;
   style?: DropdownOptionsGroupsStyle;
 }
 

@@ -2,47 +2,56 @@ export const optionsGroups = [
   {
     groupName: 'A',
     options: ['Alabama', 'Alaska', 'Arizona', 'Arkansas'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'C',
     options: ['California', 'Colorado', 'Connecticut'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'D',
     options: ['Delaware'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'F',
     options: ['Florida'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'G',
     options: ['Georgia'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'H',
     options: ['Hawaii'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'I',
     options: ['Idaho', 'Illinois', 'Indiana', 'Iowa'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'K',
     options: ['Kansas', 'Kentucky'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'L',
     options: ['Louisiana'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'M',
@@ -56,7 +65,8 @@ export const optionsGroups = [
       'Missouri',
       'Montana',
     ],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'N',
@@ -70,46 +80,55 @@ export const optionsGroups = [
       'North Carolina',
       'North Dakota',
     ],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'O',
     options: ['Ohio', 'Oklahoma', 'Oregon'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'P',
     options: ['Pennsylvania'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'R',
     options: ['Rhode Island'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'S',
     options: ['South Carolina', 'South Dakota'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'T',
     options: ['Tennessee', 'Texas'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'U',
     options: ['Utah'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'V',
     options: ['Vermont', 'Virginia'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
   {
     groupName: 'W',
     options: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-    isSelected: false
+    isSelected: false,
+    isOpened: true
   },
 ];

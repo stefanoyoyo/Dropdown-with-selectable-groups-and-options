@@ -13,10 +13,10 @@ export class AppComponent {
   componentData: DropdownOptionsGroups = {
     name: 'ciao mondo',
     config: {
-      canClose: false,
+      canCloseGroups: true,
       style: {
         whenClosed: {
-          width: '20em',
+          width: '10em',
         },
         whenOpened: {
           maxHeight: '90vh'
