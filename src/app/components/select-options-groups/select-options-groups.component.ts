@@ -1,12 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-select-options-groups',
   templateUrl: './select-options-groups.component.html',
-  styleUrls: ['./select-options-groups.component.scss']
+  styleUrls: ['./select-options-groups.component.scss'],
 })
-export class SelectOptionsGroupsComponent implements OnInit {
+export class SelectOptionsGroupsComponent implements AfterViewInit {
+  @ViewChild('mySelect') mySelect: any;
   @Input() optionsGroups: DropdownOptionsGroups = {} as DropdownOptionsGroups;
   states = new FormControl();
 
@@ -31,16 +32,31 @@ export class SelectOptionsGroupsComponent implements OnInit {
     this.optionsGroups.groupClicked(group);
   }
 
-
   // #endregion
 
+  constructor() {}
 
-
-  constructor() { }
-
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.mySelect.open();
+    this.applyDropdownHeightWhenOpened();
   }
 
+  applyDropdownHeightWhenOpened() {
+    if (this.optionsGroups == null) return;
+    if (this.optionsGroups.config == null) return;
+    if (this.optionsGroups.config.style == null) return;
+    if (this.optionsGroups.config.style.whenOpened == null) return;
+    if (this.optionsGroups.config.style.whenOpened.maxHeight == null) return;
+    setTimeout(() => {
+      // Definisco manualmente l'altezza della tendina
+      const elements = document.querySelectorAll('.mat-select-panel');
+      if (elements.length == 0) return;
+      const first = elements[0] as HTMLElement;
+      first.style.maxHeight = this.optionsGroups.config.style?.whenOpened?.maxHeight ?? '';
+      console.log('fire');
+      console.log(this.optionsGroups.config.style?.whenOpened?.maxHeight);
+    }, 0);
+  }
 }
 
 export interface DropdownOptionsGroups {
@@ -55,10 +71,23 @@ export interface DropdownOptionsGroups {
 export interface MatOptionsGroup {
   groupName: string;
   options: string[];
-  isSelected: boolean
+  isSelected: boolean;
 }
 
 export interface DropdownOptionsGroupsConfig {
   canClose: boolean;
-  style?: any;
+  style?: DropdownOptionsGroupsStyle;
+}
+
+export interface DropdownOptionsGroupsStyle {
+  whenClosed?: any;
+  whenOpened?: DropdownOptionsGroupsStyleWhenOpened;
+}
+
+export interface DropdownOptionsGroupsStyleWhenOpened {
+
+  /**Height asdumed by the drop down when opened.
+   * Note: no need to use !important
+  */
+  maxHeight: string;
 }
