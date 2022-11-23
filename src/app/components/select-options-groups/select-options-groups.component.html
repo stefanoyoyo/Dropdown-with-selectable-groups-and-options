@@ -1,44 +1,51 @@
-<div class="container">
-<!-- Tendina con i gruppi  -->
-<mat-form-field appearance="fill">
-  <mat-label>{{ optionsGroups.name }}</mat-label>
-  <mat-select [formControl]="states" multiple>
-    <mat-select-trigger>
-      {{ states.value ? states.value[0] : "" }}
-      <span
-        *ngIf="states.value?.length > 1"
-        class="example-additional-selection"
-      >
-        (+{{ states.value.length - 1 }}
-        {{ states.value?.length === 2 ? "other" : "others" }})
-      </span>
-    </mat-select-trigger>
-
-    <!-- Creazione dei gruppi nella tendina -->
-    <mat-optgroup *ngFor="let group of optionsGroups.groups; let i = index">
-      <div>
-        <!-- Checkbox del gruppo -->
-        <mat-checkbox
-          [checked]="group.isSelected"
-          (change)="groupClicked($event, group)"
-          (click)="$event.stopPropagation()"
+<div class="container" [style]="optionsGroups.config.style?.whenClosed">
+  <!-- Tendina con i gruppi  -->
+  <mat-form-field appearance="fill">
+    <mat-label>{{ optionsGroups.name }}</mat-label>
+    <mat-select [formControl]="states" multiple #mySelect>
+      <mat-select-trigger>
+        {{ states.value ? states.value[0] : "" }}
+        <span
+          *ngIf="states.value?.length > 1"
+          class="example-additional-selection"
         >
-          {{ group.groupName }}
-        </mat-checkbox>
-        <!-- Triangolo per l'apertura del gruppo -->
-        <button mat-button (click)="expandDocumentTypes(group)">
-          <mat-icon>keyboard_arrow_down</mat-icon>
-        </button>
-      </div>
-      <!-- Options di ogni gruppo -->
-      <mat-option
-        *ngFor="let name of group.options; let i = index"
-        [value]="name"
-        (click)="optionClicked(name, i)"
-        [ngClass]="optionsGroups.config.canClose ? (group.isSelected ? 'list-show' : 'list-hide') : ''"
-      >
-        {{ name }}
-      </mat-option>
-    </mat-optgroup>
-  </mat-select>
-</mat-form-field>
+          (+{{ states.value.length - 1 }}
+          {{ states.value?.length === 2 ? "other" : "others" }})
+        </span>
+      </mat-select-trigger>
+
+      <!-- Creazione dei gruppi nella tendina -->
+      <mat-optgroup *ngFor="let group of optionsGroups.groups; let i = index">
+        <div>
+          <!-- Checkbox del gruppo -->
+          <mat-checkbox
+            [checked]="group.isSelected"
+            (change)="groupClicked($event, group)"
+            (click)="$event.stopPropagation()"
+          >
+            {{ group.groupName }}
+          </mat-checkbox>
+          <!-- Triangolo per l'apertura del gruppo -->
+          <button mat-button (click)="expandDocumentTypes(group)">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </div>
+        <!-- Options di ogni gruppo -->
+        <mat-option
+          *ngFor="let name of group.options; let i = index"
+          [value]="name"
+          (click)="optionClicked(name, i)"
+          [ngClass]="
+            optionsGroups.config.canClose
+              ? group.isSelected
+                ? 'list-show'
+                : 'list-hide'
+              : ''
+          "
+        >
+          {{ name }}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+</div>

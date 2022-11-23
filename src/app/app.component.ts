@@ -15,7 +15,12 @@ export class AppComponent {
     config: {
       canClose: false,
       style: {
-        width: '1000px !important',
+        whenClosed : {
+          width: '20em',
+        },
+        whenOpened : {
+          maxHeight: '90vh'
+        }
       }
     },
     groups: optionsGroups as MatOptionsGroup[],
@@ -32,9 +37,9 @@ export class AppComponent {
   };
 
   constructor() {
-    let time = 2500;
-    setInterval(() => {
-      console.log(this.componentData)
-    }, 2500);
+    // let time = 2500;
+    // setInterval(() => {
+    //   console.log(this.componentData)
+    // }, 2500);
   }
 }
