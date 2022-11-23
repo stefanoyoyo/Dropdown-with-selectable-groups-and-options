@@ -125,10 +125,9 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       // Definisco manualmente l'altezza della tendina
       const elements = document.querySelectorAll(classname);
       if (elements.length == 0) return;
-      console.log('fireee')
       elements.forEach(element => {
         const el = element as HTMLElement;
-        el.style.background = '#deb456';
+        el.style.background = '#deb456'; // Color from config.
       });
     }, 0);
   }
