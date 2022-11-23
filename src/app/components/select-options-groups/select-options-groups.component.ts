@@ -33,14 +33,23 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   public optionClicked(group: any, name: string, index?: number) {
     group.isSelected = true;
+    if (!this.canCheckGroup(group)) group.isSelected = false;
     this.optionsGroups.onOptionClicked(group, name);
+  }
+
+  public canCheckGroup(group: any): boolean {
+    let groupOff = false;
+    for (const option of group.options) {
+      groupOff = groupOff || this.states?.value?.includes(option);
+      if (groupOff) return true;
+    }
+
+    return groupOff;
   }
 
   public groupClicked(event: any, group: any) {
     let states = this.states.value;
     states = states ? states : [];
-    console.log('states');
-    console.log(states);
     if (event.checked) {
       // imposto a checked tutte le options del gruppo
       states.push(...group.options);
