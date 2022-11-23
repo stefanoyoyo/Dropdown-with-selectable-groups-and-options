@@ -19,7 +19,7 @@ export class AppComponent {
           width: '15em',
         },
         whenOpened: {
-          maxHeight: 'auto',
+          maxHeight: '75%',
         }
       }
     },

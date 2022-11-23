@@ -1,3 +1,4 @@
+import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import {
   AfterViewInit,
   Component,
@@ -26,6 +27,19 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     // this.applyCheckboxColor();
     // console.log('fireeee');
     this.checkGroups();
+
+    console.log('this.mySelect')
+    console.log(this.mySelect)
+    this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
+  }
+
+  registerPanelScrollEvent() {
+    const panel = this.mySelect.panel.nativeElement;
+    panel.addEventListener('scroll', (event: any) => this.loadAllOnScroll(event));
+  }
+  
+  loadAllOnScroll(event: any) {
+    event.preventDefault()
   }
 
   public expandDocumentTypes(group: any) {
@@ -131,7 +145,11 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       });
     }, 0);
   }
+}
 
+
+export function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
+  return () => overlay.scrollStrategies.block();
 }
 
 
