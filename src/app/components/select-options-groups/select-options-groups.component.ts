@@ -144,4 +144,6 @@ export interface DropdownOptionsGroupsStyleWhenOpened {
    * Note: no need to use !important
    */
   maxHeight?: string;
+  height? : string;
+  minHeight? : string;
 }

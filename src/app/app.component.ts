@@ -16,10 +16,10 @@ export class AppComponent {
       canCloseGroups: true,
       style: {
         whenClosed: {
-          width: '10em',
+          width: '15em',
         },
         whenOpened: {
-          maxHeight: '90vh'
+          maxHeight: 'auto',
         }
       }
     },
