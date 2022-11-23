@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  position: absolute;
 }
 
 mat-option {
@@ -16,3 +17,13 @@ mat-option {
   height: auto !important;
 }
 
+mat-form-field {
+  position: absolute;
+}
+
+
+/* overwrite the checkbox background color */
+::ng-deep .mat-checkbox-checked .mat-checkbox-background,
+.mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color: #deb456 !important;
+}

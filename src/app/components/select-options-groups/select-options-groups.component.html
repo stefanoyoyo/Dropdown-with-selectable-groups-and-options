@@ -19,9 +19,9 @@
         <div>
           <!-- Checkbox del gruppo -->
           <mat-checkbox
+            color="primary"
             [checked]="group.isSelected"
             (change)="groupClicked($event, group)"
-            (click)="$event.stopPropagation()"
           >
             {{ group.groupName }}
           </mat-checkbox>

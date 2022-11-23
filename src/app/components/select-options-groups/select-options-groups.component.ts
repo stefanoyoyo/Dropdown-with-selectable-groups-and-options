@@ -23,7 +23,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.mySelect.open();
     this.applyDropdownHeightWhenOpened();
-    console.log('fireeee');
+    // this.applyCheckboxColor();
+    // console.log('fireeee');
     this.checkGroups();
   }
 
@@ -108,7 +109,32 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
         this.optionsGroups.config.style?.whenOpened?.maxHeight ?? '';
     }, 0);
   }
+
+
+  /**Method making the select's height match to the specifications,
+   * as the material input does not allow it by default.  */
+   applyCheckboxColor() {
+    if (this.optionsGroups == null) return;
+    if (this.optionsGroups.config == null) return;
+    if (this.optionsGroups.config.style == null) return;
+    if (this.optionsGroups.config.style.whenOpened == null) return;
+    if (this.optionsGroups.config.style.whenOpened.maxHeight == null) return;
+    setTimeout(() => {
+      const classname = `.mat-checkbox-checked .mat-checkbox-background,
+      .mat-checkbox-indeterminate .mat-checkbox-background`;
+      // Definisco manualmente l'altezza della tendina
+      const elements = document.querySelectorAll(classname);
+      if (elements.length == 0) return;
+      console.log('fireee')
+      elements.forEach(element => {
+        const el = element as HTMLElement;
+        el.style.background = '#deb456';
+      });
+    }, 0);
+  }
+
 }
+
 
 export interface DropdownOptionsGroups {
   name: string;
@@ -135,9 +161,14 @@ export interface DropdownOptionsGroupsConfig {
 }
 
 export interface DropdownOptionsGroupsStyle {
-  whenClosed?: any;
+  whenClosed?: DropdownOptionsGroupsStyleWhenClosed;
   whenOpened?: DropdownOptionsGroupsStyleWhenOpened;
 }
+
+export interface DropdownOptionsGroupsStyleWhenClosed {
+  width? : string;
+}
+
 
 export interface DropdownOptionsGroupsStyleWhenOpened {
   /**Height asdumed by the drop down when opened.
@@ -147,3 +178,4 @@ export interface DropdownOptionsGroupsStyleWhenOpened {
   height? : string;
   minHeight? : string;
 }
+
