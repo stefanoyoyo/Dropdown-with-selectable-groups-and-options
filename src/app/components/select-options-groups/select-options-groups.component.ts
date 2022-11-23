@@ -24,16 +24,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.mySelect.open();
     this.applyDropdownHeightWhenOpened();
     console.log('fireeee');
-    // const group = this.optionsGroups.groups[0];
-    // let states = this.states.value;
-    // states = states ? states : [];
-    // states.push(...group.options);
-    // this.states.setValue(states);
     this.checkGroups();
-  }
-
-  checkGroups() {
-
   }
 
   public expandDocumentTypes(group: any) {
@@ -67,6 +58,27 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.mySelect.open();
     this.optionsGroups.onSelectOpened();
   }
+
+    // #region check group
+
+  /**Method to check a group and the options included into it. */
+  private checkGroup(group: MatOptionsGroup) {
+    let states = this.states.value;
+    states = states ? states : [];
+    states.push(...group.options);
+    this.states.setValue(states);
+  }
+
+  /**Method iterating all groups in order to check the ones marked as "check" */
+  checkGroups() {
+    if (this.optionsGroups.groups == null) return;
+    this.optionsGroups.groups.forEach(group => {
+      if (group?.isSelected) this.checkGroup(group);
+    });
+  }
+
+  // #endregion
+
 
   applyDropdownHeightWhenOpened() {
     if (this.optionsGroups == null) return;
