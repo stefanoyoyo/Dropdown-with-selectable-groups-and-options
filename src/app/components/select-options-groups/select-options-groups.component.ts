@@ -33,7 +33,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   public optionClicked(group: any, name: string, index?: number) {
     group.isSelected = true;
-    this.optionsGroups.onOptionClicked(name);
+    this.optionsGroups.onOptionClicked(group, name);
   }
 
   public groupClicked(event: any, group: any) {
@@ -81,6 +81,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   // #endregion
 
 
+  /**Method making the select's height match to the specifications,
+   * as the material input does not allow it by default.  */
   applyDropdownHeightWhenOpened() {
     if (this.optionsGroups == null) return;
     if (this.optionsGroups.config == null) return;
@@ -105,9 +107,9 @@ export interface DropdownOptionsGroups {
 
   /**Callbacks */
   onGroupClicked: (group?: any) => void;
-  onOptionClicked: (option?: any) => void;
-  onSelectOpened: (option?: any) => void;
-  onSelectClosed: (option?: any) => void;
+  onOptionClicked: (group?: any, option?: any) => void;
+  onSelectOpened: (componentData?: any) => void;
+  onSelectClosed: (componentData?: any) => void;
 }
 
 export interface MatOptionsGroup {

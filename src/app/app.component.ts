@@ -25,19 +25,19 @@ export class AppComponent {
     },
     groups: optionsGroups as MatOptionsGroup[],
 
-    onGroupClicked: function (param: any): void {
+    onGroupClicked: function (group: any): void {
       console.log('groupClicked callback called');
     },
 
-    onOptionClicked: function (param: any): void {
+    onOptionClicked: function (group: any, option: any): void {
       console.log('optionClicked callback called');
     },
 
-    onSelectOpened: function (option?: any): void {
+    onSelectOpened: function (componentData?: any): void {
       console.log('onSelectOpened callback called');
     },
 
-    onSelectClosed: function (option?: any): void {
+    onSelectClosed: function (componentData?: any): void {
       console.error('NOT YET IMPLEMENTED! ');
     }
   };
