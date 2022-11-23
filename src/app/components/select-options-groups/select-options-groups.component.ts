@@ -37,6 +37,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.optionsGroups.onOptionClicked(group, name);
   }
 
+  /**Method determinating if the group toggle shold turn on or not. */
   public canCheckGroup(group: any): boolean {
     let groupOff = false;
     for (const option of group.options) {
