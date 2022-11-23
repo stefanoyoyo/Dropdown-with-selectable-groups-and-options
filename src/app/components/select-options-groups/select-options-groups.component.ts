@@ -29,10 +29,10 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     // states = states ? states : [];
     // states.push(...group.options);
     // this.states.setValue(states);
-    this.checkGroupsAs('selected');
+    this.checkGroups();
   }
 
-  checkGroupsAs(status: 'selected' | 'unselected') {
+  checkGroups() {
 
   }
 
