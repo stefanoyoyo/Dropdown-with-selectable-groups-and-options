@@ -16,7 +16,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   }
 
   public optionClicked(name: string, index?: number) {
-    this.optionsGroups.optionClicked(name);
+    this.optionsGroups.onOptionClicked(name);
   }
 
   public groupClicked(event: any, group: any) {
@@ -29,7 +29,13 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     }
     this.states.setValue(states);
     group.isSelected = !group.isSelected;
-    this.optionsGroups.groupClicked(group);
+    this.optionsGroups.onGroupClicked(group);
+  }
+
+  openDropdown() {
+    this.applyDropdownHeightWhenOpened();
+    this.mySelect.open();
+    this.optionsGroups.onSelectOpened();
   }
 
   // #endregion
@@ -53,8 +59,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       if (elements.length == 0) return;
       const first = elements[0] as HTMLElement;
       first.style.maxHeight = this.optionsGroups.config.style?.whenOpened?.maxHeight ?? '';
-      console.log('fire');
-      console.log(this.optionsGroups.config.style?.whenOpened?.maxHeight);
     }, 0);
   }
 }
@@ -64,8 +68,12 @@ export interface DropdownOptionsGroups {
   config: DropdownOptionsGroupsConfig;
   groups: MatOptionsGroup[];
 
-  groupClicked: (group: any) => void;
-  optionClicked: (option: any) => void;
+  /**Callbacks */
+  onGroupClicked: (group?: any) => void;
+  onOptionClicked: (option?: any) => void;
+
+  onSelectOpened: (option?: any) => void;
+  onSelectClosed: (option?: any) => void;
 }
 
 export interface MatOptionsGroup {
@@ -89,5 +97,5 @@ export interface DropdownOptionsGroupsStyleWhenOpened {
   /**Height asdumed by the drop down when opened.
    * Note: no need to use !important
   */
-  maxHeight: string;
+  maxHeight?: string;
 }

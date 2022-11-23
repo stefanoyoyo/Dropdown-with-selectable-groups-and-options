@@ -15,24 +15,30 @@ export class AppComponent {
     config: {
       canClose: false,
       style: {
-        whenClosed : {
+        whenClosed: {
           width: '20em',
         },
-        whenOpened : {
+        whenOpened: {
           maxHeight: '90vh'
         }
       }
     },
     groups: optionsGroups as MatOptionsGroup[],
 
-    groupClicked: function (param: any): void {
-      console.log('groupClicked callback called')
-      // console.log(param)
+    onGroupClicked: function (param: any): void {
+      console.log('groupClicked callback called');
     },
 
-    optionClicked: function (param: any): void {
-      console.log('optionClicked callback called')
-      // console.log(param)
+    onOptionClicked: function (param: any): void {
+      console.log('optionClicked callback called');
+    },
+
+    onSelectOpened: function (option?: any): void {
+      console.log('onSelectOpened callback called');
+    },
+
+    onSelectClosed: function (option?: any): void {
+      console.error('NOT YET IMPLEMENTED! ');
     }
   };
 
