@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -11,13 +18,22 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   @Input() optionsGroups: DropdownOptionsGroups = {} as DropdownOptionsGroups;
   states = new FormControl();
 
-
-  constructor() {
-  }
+  constructor() {}
 
   ngAfterViewInit(): void {
     this.mySelect.open();
     this.applyDropdownHeightWhenOpened();
+    console.log('fireeee');
+    // const group = this.optionsGroups.groups[0];
+    // let states = this.states.value;
+    // states = states ? states : [];
+    // states.push(...group.options);
+    // this.states.setValue(states);
+    this.checkGroupsAs('selected');
+  }
+
+  checkGroupsAs(status: 'selected' | 'unselected') {
+
   }
 
   public expandDocumentTypes(group: any) {
@@ -31,14 +47,19 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   public groupClicked(event: any, group: any) {
     let states = this.states.value;
     states = states ? states : [];
+    console.log('states');
+    console.log(states);
     if (event.checked) {
+      // imposto a checked tutte le options del gruppo
       states.push(...group.options);
     } else {
+      // imposto ad unchecked tutte le options del gruppo
       group.options.forEach((x: string) => states.splice(states.indexOf(x), 1));
     }
     this.states.setValue(states);
-    group.isSelected = !group.isSelected;
+    group.isSelected = event.checked;
     this.optionsGroups.onGroupClicked(group);
+    console.log(group);
   }
 
   openDropdown() {
@@ -58,7 +79,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       const elements = document.querySelectorAll('.mat-select-panel');
       if (elements.length == 0) return;
       const first = elements[0] as HTMLElement;
-      first.style.maxHeight = this.optionsGroups.config.style?.whenOpened?.maxHeight ?? '';
+      first.style.maxHeight =
+        this.optionsGroups.config.style?.whenOpened?.maxHeight ?? '';
     }, 0);
   }
 }
@@ -93,9 +115,8 @@ export interface DropdownOptionsGroupsStyle {
 }
 
 export interface DropdownOptionsGroupsStyleWhenOpened {
-
   /**Height asdumed by the drop down when opened.
    * Note: no need to use !important
-  */
+   */
   maxHeight?: string;
 }

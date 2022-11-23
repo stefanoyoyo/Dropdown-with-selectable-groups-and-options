@@ -2,13 +2,13 @@ export const optionsGroups = [
   {
     groupName: 'A',
     options: ['Alabama', 'Alaska', 'Arizona', 'Arkansas'],
-    isSelected: false,
+    isSelected: true,
     isOpened: true
   },
   {
     groupName: 'C',
     options: ['California', 'Colorado', 'Connecticut'],
-    isSelected: false,
+    isSelected: true,
     isOpened: true
   },
   {
