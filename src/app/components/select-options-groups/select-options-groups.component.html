@@ -34,7 +34,7 @@
         <mat-option
           *ngFor="let name of group.options; let i = index"
           [value]="name"
-          (click)="optionClicked(name, i)"
+          (click)="optionClicked(group, name, i)"
           [ngClass]="
             optionsGroups.config.canCloseGroups
               ? group.isOpened

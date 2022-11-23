@@ -31,7 +31,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     group.isOpened = !group.isOpened;
   }
 
-  public optionClicked(name: string, index?: number) {
+  public optionClicked(group: any, name: string, index?: number) {
+    group.isSelected = true;
     this.optionsGroups.onOptionClicked(name);
   }
 
