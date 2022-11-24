@@ -79,7 +79,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       states.push(...group.options.map((row: MatOptionInfo) => row.name));
     } else {
       // imposto ad unchecked tutte le options del gruppo
-      group.options.forEach((x: string) => states.splice(states.indexOf(x), 1));
+      group.options.map((row: MatOptionInfo) => row.name).forEach((x: string) => states.splice(states.indexOf(x), 1));
     }
     this.states.setValue(states);
     group.isSelected = event.checked;
