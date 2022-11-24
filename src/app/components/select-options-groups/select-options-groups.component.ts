@@ -40,6 +40,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     }, 0);
   }
 
+  /**Method listening to all scrolls requests applied on the material select */
   registerPanelScrollEvent() {
     const panel = this.mySelect.panel.nativeElement;
     panel.addEventListener('scroll', (event: any) => {
@@ -47,10 +48,12 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     });
   }
 
+  /**Method opening / collapsing groups when the select icon is clicked */
   public expandDocumentTypes(group: any) {
     group.isOpened = !group.isOpened;
   }
 
+  /**Method managing an option click from the select. */
   public optionClicked(group: any, name: string, index?: number) {
     const scrolltopBck = deepCopy(
       this.latestScrollsTop[this.latestScrollsTop.length - 1]
@@ -72,6 +75,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     return groupOff;
   }
 
+  /**Method managing an group click from the select. */
   public groupClicked(event: any, group: any) {
     let states = this.states.value;
     states = states ? states : [];
