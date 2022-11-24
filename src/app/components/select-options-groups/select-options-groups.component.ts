@@ -29,37 +29,12 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.applyDropdownHeightWhenOpened();
     // this.applyCheckboxColor();
     this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
-    // setTimeout(() => {
-    //   // Salvo un riferimento al pannello della tendina di material
-    //   this.selectPanel = this.mySelect.panel.nativeElement;
-    //   // Inizializzo lo scroll del pannello a 0
-    //   this.selectPanel.scrollTop = 0;
-    // }, 0);
     this.getMaterialselectPanel().then((res)=> {
-      console.log('res ddd')
-      console.log(res)
       // Salvo un riferimento al pannello della tendina di material
       this.selectPanel = res;
       // Inizializzo lo scroll del pannello a 0
       this.selectPanel.scrollTop = 0;
     })
-  }
-
-  /**Method returning a promise listening to the material select panel
-   * and returning it when ready on the page. */
-  async getMaterialselectPanel() {
-    const promise = new Promise((resolve, reject) => {
-      let interval = setInterval(() => {
-        console.log('blaa')
-        let selectPanel = this.mySelect.panel.nativeElement;
-        if (selectPanel != null) {
-          clearInterval(interval);
-          resolve(selectPanel);
-        };
-      }, 0);
-    });
-
-    return promise;
   }
 
   /**Method listening to all scrolls requests applied on the material select */
@@ -80,6 +55,28 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
     return groupOff;
   }
+
+  // #region promises
+
+  /**Method returning a promise listening to the material select panel
+   * and returning it when ready on the page. */
+   async getMaterialselectPanel() {
+    const promise = new Promise((resolve, reject) => {
+      let interval = setInterval(() => {
+        console.log('blaa')
+        let selectPanel = this.mySelect.panel.nativeElement;
+        if (selectPanel != null) {
+          clearInterval(interval);
+          resolve(selectPanel);
+        };
+      }, 0);
+    });
+
+    return promise;
+  }
+
+
+  //#endregion
 
   // #region events listeners
 
