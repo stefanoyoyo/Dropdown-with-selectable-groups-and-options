@@ -25,12 +25,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     // this.applyCheckboxColor();
     this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
     // Quando esise il pannello sul DOM, porto lo scroll a 0
-    this.getMaterialselectPanel().then((res) => {
-      // Salvo un riferimento al pannello della tendina di material
-      this.selectPanel = res;
-      // Inizializzo lo scroll del pannello a 0
-      this.selectPanel.scrollTop = 0;
-    });
+    this.scrollTopMatPanel();
   }
 
   /**Method listening to all scrolls requests applied on the material select */
@@ -104,7 +99,18 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   openDropdownProgrammatically() {
     this.applyDropdownHeightWhenOpened();
     this.mySelect.open();
+    // Quando esise il pannello della select sul DOM, porto lo scroll a 0
+    this.scrollTopMatPanel();
     this.optionsGroups.onSelectOpened();
+  }
+
+  private scrollTopMatPanel() {
+    this.getMaterialselectPanel().then((res) => {
+      // Salvo un riferimento al pannello della tendina di material
+      this.selectPanel = res;
+      // Inizializzo lo scroll del pannello a 0
+      this.selectPanel.scrollTop = 0;
+    });
   }
 
   /**Method to check a group and the options included into it. */
