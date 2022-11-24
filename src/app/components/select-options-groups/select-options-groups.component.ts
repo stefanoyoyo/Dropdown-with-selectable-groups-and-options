@@ -19,27 +19,32 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   @Input() optionsGroups: DropdownOptionsGroups = {} as DropdownOptionsGroups;
   states = new FormControl();
 
+  selectPanel: any;
+
+  latestScrollsTop: number[] = [0];
+
   constructor() {}
 
   ngAfterViewInit(): void {
     this.mySelect.open();
+    this.checkGroups();
     this.applyDropdownHeightWhenOpened();
     // this.applyCheckboxColor();
-    // console.log('fireeee');
-    this.checkGroups();
-
-    console.log('this.mySelect')
-    console.log(this.mySelect)
     this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
+    // Mi salvo un riferiemtno al pannello della tendina di material
+    setTimeout(() => {
+      this.selectPanel = this.mySelect.panel.nativeElement;
+      // Inizializzo lo scroll del pannello a 0
+      this.selectPanel.scrollTop = 0;
+    }, 0);
   }
 
   registerPanelScrollEvent() {
     const panel = this.mySelect.panel.nativeElement;
-    panel.addEventListener('scroll', (event: any) => this.loadAllOnScroll(event));
-  }
-  
-  loadAllOnScroll(event: any) {
-    event.preventDefault()
+    panel.addEventListener('scroll', (event: any) => {
+      console.log('fire push');
+      this.latestScrollsTop.push(panel.scrollTop);
+    });
   }
 
   public expandDocumentTypes(group: any) {
@@ -47,6 +52,10 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   }
 
   public optionClicked(group: any, name: string, index?: number) {
+    const scrolltopBck = deepCopy(
+      this.latestScrollsTop[this.latestScrollsTop.length - 1]
+    );
+    this.selectPanel.scrollTop = scrolltopBck;
     group.isSelected = true;
     if (!this.canCheckGroup(group)) group.isSelected = false;
     this.optionsGroups.onOptionClicked(group, name);
@@ -85,7 +94,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.optionsGroups.onSelectOpened();
   }
 
-    // #region check group
+  // #region check group
 
   /**Method to check a group and the options included into it. */
   private checkGroup(group: MatOptionsGroup) {
@@ -98,13 +107,12 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   /**Method iterating all groups in order to check the ones marked as "check" */
   checkGroups() {
     if (this.optionsGroups.groups == null) return;
-    this.optionsGroups.groups.forEach(group => {
+    this.optionsGroups.groups.forEach((group) => {
       if (group?.isSelected) this.checkGroup(group);
     });
   }
 
   // #endregion
-
 
   /**Method making the select's height match to the specifications,
    * as the material input does not allow it by default.  */
@@ -124,22 +132,21 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     }, 0);
   }
 
-
   /**Method making the select's height match to the specifications,
    * as the material input does not allow it by default.  */
-   applyCheckboxColor() {
+  applyCheckboxColor() {
     if (this.optionsGroups == null) return;
     if (this.optionsGroups.config == null) return;
     if (this.optionsGroups.config.style == null) return;
     if (this.optionsGroups.config.style.whenOpened == null) return;
     if (this.optionsGroups.config.style.whenOpened.maxHeight == null) return;
     setTimeout(() => {
-      const classname = `.mat-checkbox-checked .mat-checkbox-background,
-      .mat-checkbox-indeterminate .mat-checkbox-background`;
+      const classname =
+        '.mat-checkbox-checked .mat-checkbox-background,.mat-checkbox-indeterminate .mat-checkbox-background';
       // Definisco manualmente l'altezza della tendina
       const elements = document.querySelectorAll(classname);
       if (elements.length == 0) return;
-      elements.forEach(element => {
+      elements.forEach((element) => {
         const el = element as HTMLElement;
         el.style.background = '#deb456'; // Color from config.
       });
@@ -147,11 +154,14 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   }
 }
 
+export function deepCopy(obj: any) {
+  if (obj == null) return null;
+  return JSON.parse(JSON.stringify(obj));
+}
 
 export function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
   return () => overlay.scrollStrategies.block();
 }
-
 
 export interface DropdownOptionsGroups {
   name: string;
@@ -183,16 +193,14 @@ export interface DropdownOptionsGroupsStyle {
 }
 
 export interface DropdownOptionsGroupsStyleWhenClosed {
-  width? : string;
+  width?: string;
 }
-
 
 export interface DropdownOptionsGroupsStyleWhenOpened {
   /**Height asdumed by the drop down when opened.
    * Note: no need to use !important
    */
   maxHeight?: string;
-  height? : string;
-  minHeight? : string;
+  height?: string;
+  minHeight?: string;
 }
-
