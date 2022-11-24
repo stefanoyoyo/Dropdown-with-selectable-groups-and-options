@@ -47,7 +47,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   async getMaterialselectPanel() {
     const promise = new Promise((resolve, reject) => {
       let interval = setInterval(() => {
-        console.log('blaa');
         let selectPanel = this.mySelect.panel.nativeElement;
         if (selectPanel != null) {
           clearInterval(interval);
@@ -130,15 +129,26 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (this.optionsGroups.config.style == null) return;
     if (this.optionsGroups.config.style.whenOpened == null) return;
     if (this.optionsGroups.config.style.whenOpened.maxHeight == null) return;
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   // Definisco manualmente l'altezza della tendina
+    //   // const elements = document.querySelectorAll('.mat-select-panel');
+    //   // if (elements.length == 0) return;
+    //   // const first = elements[0] as HTMLElement;
+    //   // first.style.maxHeight =
+    //   //   this.optionsGroups.config.style?.whenOpened?.maxHeight ?? '';
+    // }, 0);
+
+    this.getMaterialselectPanel().then((res: any) => {
+      // E' sicuro che il pannello sia presente sul DOM
       // Definisco manualmente l'altezza della tendina
       const elements = document.querySelectorAll('.mat-select-panel');
       if (elements.length == 0) return;
       const first = elements[0] as HTMLElement;
       first.style.maxHeight =
         this.optionsGroups.config.style?.whenOpened?.maxHeight ?? '';
-    }, 0);
+    });
   }
+
 
   /**Method determinating if the group toggle shold turn on or not. */
   public canCheckGroup(group: any): boolean {
