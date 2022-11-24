@@ -3,6 +3,7 @@
   <mat-form-field (click)="openDropdownProgrammatically()" appearance="fill">
     <mat-label (click)="openDropdownProgrammatically()">{{ optionsGroups.name }}</mat-label>
     <mat-select (click)="openDropdownProgrammatically()" [formControl]="states" multiple #mySelect>
+      <!-- Valutare eliminazione -->
       <mat-select-trigger>
         {{ states.value ? states.value[0] : "" }}
         <span
@@ -13,10 +14,11 @@
           {{ states.value?.length === 2 ? "other" : "others" }})
         </span>
       </mat-select-trigger>
-
       <!-- Creazione dei gruppi nella tendina -->
       <mat-optgroup *ngFor="let group of optionsGroups.groups; let i = index">
         <div>
+          <!-- Icona alla sx del gruppo -->
+          <mat-icon>{{ group.icon }}</mat-icon>
           <!-- Checkbox del gruppo -->
           <mat-checkbox
             color="accent"
@@ -46,6 +48,7 @@
           {{ name }}
         </mat-option>
       </mat-optgroup>
+
     </mat-select>
   </mat-form-field>
 </div>

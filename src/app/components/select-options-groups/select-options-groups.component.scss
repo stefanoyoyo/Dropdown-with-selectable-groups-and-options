@@ -1,13 +1,25 @@
+:root {
+  //Capire perchè non riesco ad usarla come variabile
+  --mat-icon-width: 24px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   position: absolute;
 }
 
-mat-option {
+
+
+mat-optgroup {
   position: relative;
-  left: 1em;
+  mat-option {
+    position: relative;
+    left: calc(3em + 24px);
+  }
 }
+
+
 
 .list-hide {
   height: 0 !important;

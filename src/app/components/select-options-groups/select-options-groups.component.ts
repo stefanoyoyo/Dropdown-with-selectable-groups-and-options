@@ -204,6 +204,7 @@ export interface MatOptionsGroup {
   options: string[];
   isSelected: boolean;
   isOpened: boolean;
+  icon?:string;
 }
 
 export interface DropdownOptionsGroupsConfig {
