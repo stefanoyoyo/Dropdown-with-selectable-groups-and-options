@@ -99,7 +99,9 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   // #region methods
 
-  openDropdown() {
+  /**Method to open the dropdown programmatically.
+   * Often calld by the view. */
+  openDropdownProgrammatically() {
     this.applyDropdownHeightWhenOpened();
     this.mySelect.open();
     this.optionsGroups.onSelectOpened();

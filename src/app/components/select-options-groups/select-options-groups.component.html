@@ -1,8 +1,8 @@
 <div class="container" [style]="optionsGroups.config.style?.whenClosed">
   <!-- Tendina con i gruppi  -->
-  <mat-form-field (click)="openDropdown()" appearance="fill">
-    <mat-label (click)="openDropdown()">{{ optionsGroups.name }}</mat-label>
-    <mat-select (click)="openDropdown()" [formControl]="states" multiple #mySelect>
+  <mat-form-field (click)="openDropdownProgrammatically()" appearance="fill">
+    <mat-label (click)="openDropdownProgrammatically()">{{ optionsGroups.name }}</mat-label>
+    <mat-select (click)="openDropdownProgrammatically()" [formControl]="states" multiple #mySelect>
       <mat-select-trigger>
         {{ states.value ? states.value[0] : "" }}
         <span
