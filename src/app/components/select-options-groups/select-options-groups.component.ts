@@ -76,10 +76,15 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       console.log('fireeeee 1 ')
       var test = this.getSelectedGroupsCount();
       if ( this.getSelectedGroupsCount() > this.optionsGroups.config.maxSelectableGroups ) {
-        this.deselectAllGroups();
+        // this.deselectAllGroups();
         group.isSelected = true;
-        this.states.setValue([]);
-        this.states.setValue([option.name]);
+        const grpOptions = group.options.map((row: MatOptionInfo) => row.name);
+        const ammitted = this.states.value.filter((row: string) => grpOptions.includes(row));
+        this.optionsGroups.groups.forEach(group => {
+          group.isSelected = false;
+        });
+        this.states.setValue(ammitted);
+        group.isSelected = true;
       }
     }
 
