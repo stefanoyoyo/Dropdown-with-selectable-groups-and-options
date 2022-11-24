@@ -17,32 +17,33 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   latestScrollsTop: number[] = [0];
 
-  constructor() {}
+  constructor() { }
 
   ngAfterViewInit(): void {
     this.mySelect.open();
-    this.checkGroups();
     this.assignIds();
-    this.applyDropdownHeightWhenOpened();
-    // this.applyCheckboxColor();
-    this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
-    // Quando esise il pannello sul DOM, porto lo scroll a 0
-    this.scrollTopMatPanel();
-    console.log('this.optionsGroups');
-    console.log(this.optionsGroups);
+    setTimeout(() => {
+      this.checkGroups();
+      this.applyDropdownHeightWhenOpened();
+      // this.applyCheckboxColor();
+      this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
+      // Quando esise il pannello sul DOM, porto lo scroll a 0
+      this.scrollTopMatPanel();
+      console.log('this.optionsGroups');
+      console.log(this.optionsGroups);
+      console.log('this.states.value')
+      console.log(this.states.value)
+    }, 0);
   }
 
   /**Method assgning an id to each group and each option. */
-  assignIds() {
+  assignIds(): void {
     this.optionsGroups.groups.forEach(group => {
       group.id = group.id ?? generateUUID();
       group.options.forEach(option => {
         option.id = option.id ?? generateUUID();
       });
     });
-
-    console.log('this.optionsGroups.groups')
-    console.log(this.optionsGroups.groups)
   }
 
   /**Method listening to all scrolls requests applied on the material select */
@@ -90,10 +91,10 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (this.optionsGroups.config.maxSelectableGroups != null) {
       console.log('fireeeee 1 ')
       var test = this.getSelectedGroupsCount();
-      if ( this.getSelectedGroupsCount() > this.optionsGroups.config.maxSelectableGroups ) {
+      if (this.getSelectedGroupsCount() > this.optionsGroups.config.maxSelectableGroups) {
         // this.deselectAllGroups();
         group.isSelected = true;
-        const grpOptions = group.options.map((row: MatOptionInfo) => row.name);
+        const grpOptions = group.options.map((row: MatOptionInfo) => row.id);
         const ammitted = this.states.value.filter((row: string) => grpOptions.includes(row));
         this.optionsGroups.groups.forEach(group => {
           group.isSelected = false;
@@ -117,20 +118,20 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       if (this.optionsGroups.config.maxSelectableGroups != null) {
         console.log('fireeeee 1 ')
         var test = this.getSelectedGroupsCount();
-        if ( this.getSelectedGroupsCount() > this.optionsGroups.config.maxSelectableGroups ) {
+        if (this.getSelectedGroupsCount() > this.optionsGroups.config.maxSelectableGroups) {
           this.deselectAllGroups();
           group.isSelected = true;
         }
       }
       // imposto a checked tutte le options del gruppo
-      states.push(...group.options.map((row: MatOptionInfo) => row.name));
+      states.push(...group.options.map((row: MatOptionInfo) => row.id));
       group.options.forEach((option: MatOptionInfo) => {
         option.isSelected = true;
       });
     } else {
       // imposto ad unchecked tutte le options del gruppo
       group.options
-        .map((row: MatOptionInfo) => row.name)
+        .map((row: MatOptionInfo) => row.id)
         .forEach((x: string) => states.splice(states.indexOf(x), 1));
       group.options.forEach((option: MatOptionInfo) => {
         option.isSelected = false;
@@ -153,7 +154,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       group.isSelected = false;
       // Deselezione delle options degli altri gruppi
       group.options
-        .map((row: MatOptionInfo) => row.name)
+        .map((row: MatOptionInfo) => row.id ?? '')
         .forEach((x: string) => states.splice(states.indexOf(x), 1));
     });
   }
@@ -193,12 +194,14 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   /**Method to check a group and the options included into it. */
   private checkGroup(group: MatOptionsGroup, checkStatus: boolean = true) {
-    let states = this.checkOptions(checkStatus, group.options);
-    this.states.setValue(states);
+    if (checkStatus) {
+      let states = this.checkOptions(checkStatus, group.options);
+      this.states.setValue(states);
+    }
     group.options.forEach((option) => (option.isSelected = checkStatus));
   }
 
-  private checkOptions(checkStatus: boolean, options: MatOptionInfo[]) {
+  private checkOptions(checkStatus: boolean, options: MatOptionInfo[]): string[] {
     let states = this.states.value;
     states = states ? states : [];
     // Attivo tutte le options specificate
@@ -206,7 +209,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       option.isSelected = true;
     });
     if (checkStatus)
-      states.push(...options.map((option: MatOptionInfo) => option.name));
+      states.push(...options.map((option: MatOptionInfo) => option.id));
 
     return states;
   }
@@ -243,7 +246,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   public canCheckGroup(group: any): boolean {
     let groupOff = false;
     for (const option of group.options) {
-      groupOff = groupOff || this.states?.value?.includes(option.name);
+      groupOff = groupOff || this.states?.value?.includes(option.id);
       if (groupOff) return true;
     }
 
@@ -290,7 +293,7 @@ export interface DropdownOptionsGroups {
 }
 
 export interface MatOptionsGroup {
-  id?:string;
+  id?: string;
   groupName: string;
   options: MatOptionInfo[];
   isSelected: boolean;
