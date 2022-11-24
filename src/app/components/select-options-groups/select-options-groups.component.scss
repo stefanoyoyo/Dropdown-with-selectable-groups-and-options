@@ -13,13 +13,19 @@ mat-optgroup {
   position: relative;
   mat-option {
     position: relative;
-    left: calc(3em + 24px);
+    left: calc(4em);
   }
 }
 
 mat-icon {
   margin-right: 5px !important;
+
+  &.option-icon {
+    margin-right: 4px !important;
+  }
 }
+
+
 
 .list-hide {
   height: 0 !important;
