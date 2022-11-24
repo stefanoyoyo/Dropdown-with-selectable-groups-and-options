@@ -34,9 +34,9 @@
         </div>
         <!-- Options di ogni gruppo -->
         <mat-option
-          *ngFor="let name of group.options; let i = index"
-          [value]="name"
-          (click)="onOptionClicked(group, name, i)"
+          *ngFor="let option of group.options; let i = index"
+          [value]="option"
+          (click)="onOptionClicked(group, option, i)"
           [ngClass]="
             optionsGroups.config.canCloseGroups
               ? group.isOpened
@@ -45,7 +45,7 @@
               : ''
           "
         >
-          {{ name }}
+          {{ option.name }}
         </mat-option>
       </mat-optgroup>
 

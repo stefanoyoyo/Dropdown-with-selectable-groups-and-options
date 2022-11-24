@@ -1,153 +1,188 @@
 export const optionsGroups = [
   {
     groupName: 'A',
-    options: ['Alabama', 'Alaska', 'Arizona', 'Arkansas'],
+    options: [
+      { name: 'Alabama', icon: 'mic' },
+      { name: 'Alaska', icon: 'mic' },
+      { name: 'Arizona', icon: 'mic' },
+      { name: 'Arkansas', icon: 'mic' },
+    ],
     isSelected: true,
     isOpened: true,
-    icon: 'flight'
+    icon: 'flight',
   },
   {
     groupName: 'C',
-    options: ['California', 'Colorado', 'Connecticut'],
+    options: [
+      { name: 'California', icon: 'mic' },
+      { name: 'Colorado', icon: 'mic' },
+      { name: 'Connecticut', icon: 'mic' },
+    ],
     isSelected: true,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'D',
-    options: ['Delaware'],
+    options: [{ name: 'Delaware', icon: 'mic' }],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'F',
-    options: ['Florida'],
+    options: [{ name: 'Florida', icon: 'mic' }],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'G',
-    options: ['Georgia'],
+    options: [{ name: 'Georgia', icon: 'mic' }],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'H',
-    options: ['Hawaii'],
+    options: [{ name: 'Hawaii', icon: 'mic' }],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'I',
-    options: ['Idaho', 'Illinois', 'Indiana', 'Iowa'],
+    options: [
+      { name: 'Idaho', icon: 'mic' },
+      { name: 'Illinois', icon: 'mic' },
+      { name: 'Indiana', icon: 'mic' },
+      { name: 'Iowa', icon: 'mic' },
+    ],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'K',
-    options: ['Kansas', 'Kentucky'],
+    options: [
+      { name: 'Kansas', icon: 'mic' },
+      { name: 'Kentucky', icon: 'mic' },
+    ],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'L',
-    options: ['Louisiana'],
+    options: [{ name: 'Louisiana', icon: 'mic' }],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'M',
     options: [
-      'Maine',
-      'Maryland',
-      'Massachusetts',
-      'Michigan',
-      'Minnesota',
-      'Mississippi',
-      'Missouri',
-      'Montana',
+      { name: 'Maine', icon: 'mic' },
+      { name: 'Maryland', icon: 'mic' },
+      { name: 'Massachusetts', icon: 'mic' },
+      { name: 'Michigan', icon: 'mic' },
+      { name: 'Minnesota', icon: 'mic' },
+      { name: 'Mississippi', icon: 'mic' },
+      { name: 'Missouri', icon: 'mic' },
+      { name: 'Montana', icon: 'mic' },
     ],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'N',
     options: [
-      'Nebraska',
-      'Nevada',
-      'New Hampshire',
-      'New Jersey',
-      'New Mexico',
-      'New York',
-      'North Carolina',
-      'North Dakota',
+      { name: 'Nebraska', icon: 'mic' },
+      { name: 'Nevada', icon: 'mic' },
+      { name: 'New Hampshire', icon: 'mic' },
+      { name: 'New Jersey', icon: 'mic' },
+      { name: 'New Mexico', icon: 'mic' },
+      { name: 'New York', icon: 'mic' },
+      { name: 'North Carolina', icon: 'mic' },
+      { name: 'North Dakota', icon: 'mic' },
     ],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'O',
-    options: ['Ohio', 'Oklahoma', 'Oregon'],
+    options: [
+      { name: 'Ohio', icon: 'mic' },
+      { name: 'Oklahoma', icon: 'mic' },
+      { name: 'Oregon', icon: 'mic' },
+    ],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'P',
-    options: ['Pennsylvania'],
+    options: [{ name: 'Pennsylvania', icon: 'mic' }],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'R',
-    options: ['Rhode Island'],
+    options: [{ name: 'Rhode Island', icon: 'mic' }],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'S',
-    options: ['South Carolina', 'South Dakota'],
+    options: [
+      { name: 'South Carolina', icon: 'mic' },
+      { name: 'South Dakota', icon: 'mic' },
+    ],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'T',
-    options: ['Tennessee', 'Texas'],
+    options: [
+      { name: 'Tennessee', icon: 'mic' },
+      { name: 'Texas', icon: 'mic' },
+    ],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'U',
-    options: ['Utah'],
+    options: [{ name: 'Utah', icon: 'mic' }],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'V',
-    options: ['Vermont', 'Virginia'],
+    options: [
+      { name: 'Vermont', icon: 'mic' },
+      { name: 'Virginia', icon: 'mic' },
+    ],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
   {
     groupName: 'W',
-    options: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
+    options: [
+      { name: 'Washington', icon: 'mic' },
+      { name: 'West Virginia', icon: 'mic' },
+      { name: 'Wisconsin', icon: 'mic' },
+      { name: 'Wyoming', icon: 'mic' },
+    ],
     isSelected: false,
     isOpened: true,
-    icon: 'mic'
+    icon: 'flight',
   },
 ];
