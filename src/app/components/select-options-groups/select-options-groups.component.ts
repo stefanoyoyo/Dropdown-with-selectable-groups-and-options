@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { deepCopy } from 'src/shared/objectHelper';
+import { generateUUID } from 'src/shared/stringHelper.model';
 
 @Component({
   selector: 'app-select-options-groups',
@@ -21,6 +22,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.mySelect.open();
     this.checkGroups();
+    this.assignIds();
     this.applyDropdownHeightWhenOpened();
     // this.applyCheckboxColor();
     this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
@@ -28,6 +30,18 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.scrollTopMatPanel();
     console.log('this.optionsGroups');
     console.log(this.optionsGroups);
+  }
+
+  assignIds() {
+    this.optionsGroups.groups.forEach(group => {
+      group.id = group.id ?? generateUUID();
+      group.options.forEach(option => {
+        option.id = option.id ?? generateUUID();
+      });
+    });
+
+    console.log('this.optionsGroups.groups')
+    console.log(this.optionsGroups.groups)
   }
 
   /**Method listening to all scrolls requests applied on the material select */
@@ -275,6 +289,7 @@ export interface DropdownOptionsGroups {
 }
 
 export interface MatOptionsGroup {
+  id?:string;
   groupName: string;
   options: MatOptionInfo[];
   isSelected: boolean;
@@ -283,6 +298,7 @@ export interface MatOptionsGroup {
 }
 
 export interface MatOptionInfo {
+  id?: string;
   name: string;
   isSelected: boolean;
   icon?: string;
