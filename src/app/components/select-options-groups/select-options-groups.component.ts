@@ -60,6 +60,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   /**Method managing an option click from the select. */
   public onOptionClicked(group: any, option:any, index: number) {
+
     const scrolltopBck = deepCopy(
       this.latestScrollsTop[this.latestScrollsTop.length - 1]
     );
@@ -75,7 +76,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     states = states ? states : [];
     if (event.checked) {
       // imposto a checked tutte le options del gruppo
-      states.push(...group.options);
+      states.push(...group.options.map((row: MatOptionInfo) => row.name));
     } else {
       // imposto ad unchecked tutte le options del gruppo
       group.options.forEach((x: string) => states.splice(states.indexOf(x), 1));
@@ -117,7 +118,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   private checkGroup(group: MatOptionsGroup) {
     let states = this.states.value;
     states = states ? states : [];
-    states.push(...group.options);
+    states.push(...group.options.map((row: MatOptionInfo) => row.name));
     this.states.setValue(states);
   }
 
@@ -153,7 +154,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   public canCheckGroup(group: any): boolean {
     let groupOff = false;
     for (const option of group.options) {
-      groupOff = groupOff || this.states?.value?.includes(option);
+      groupOff = groupOff || this.states?.value?.includes(option.name);
       if (groupOff) return true;
     }
 
