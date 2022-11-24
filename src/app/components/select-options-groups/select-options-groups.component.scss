@@ -13,7 +13,7 @@ mat-optgroup {
   position: relative;
   mat-option {
     position: relative;
-    left: calc(4em);
+    left: calc(7em);
   }
 }
 
@@ -23,6 +23,12 @@ mat-icon {
   &.option-icon {
     margin-right: 4px !important;
   }
+}
+
+/*Dimensione del bottone di material per espandere / stringere checkbox*/
+button {
+  width: 3em !important;
+  min-width: 3em !important;
 }
 
 

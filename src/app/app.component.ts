@@ -14,6 +14,7 @@ export class AppComponent {
     name: 'ciao mondo',
     config: {
       canCloseGroups: true,
+      maxSelectableGroups: 1,
       style: {
         whenClosed: {
           width: '15em',

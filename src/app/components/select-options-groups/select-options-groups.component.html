@@ -17,6 +17,10 @@
       <!-- Creazione dei gruppi nella tendina -->
       <mat-optgroup *ngFor="let group of optionsGroups.groups; let i = index">
         <div>
+          <!-- Triangolo per l'apertura del gruppo -->
+          <button mat-button (click)="onExpandGroup(group)">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
           <!-- Icona alla sx del gruppo -->
           <mat-icon>{{ group.icon }}</mat-icon>
           <!-- Checkbox del gruppo -->
@@ -27,10 +31,6 @@
           >
             {{ group.groupName }}
           </mat-checkbox>
-          <!-- Triangolo per l'apertura del gruppo -->
-          <button mat-button (click)="onExpandGroup(group)">
-            <mat-icon>keyboard_arrow_down</mat-icon>
-          </button>
         </div>
         <!-- Options di ogni gruppo -->
         <mat-option
