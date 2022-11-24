@@ -71,16 +71,20 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     group.isSelected = true;
     option.isSelected = !option.isSelected;
     if (!this.canCheckGroup(group)) group.isSelected = false;
+    // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
+    if (this.optionsGroups.config.maxSelectableGroups != null) {
+      console.log('fireeeee 1 ')
+      var test = this.getSelectedGroupsCount();
+      if ( this.getSelectedGroupsCount() > this.optionsGroups.config.maxSelectableGroups ) {
+        this.deselectAllGroups();
+        group.isSelected = true;
+        this.states.setValue([]);
+        this.states.setValue([option.name]);
+      }
+    }
+
     console.log('this.optionsGroups');
     console.log(this.optionsGroups);
-    // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
-    // if (this.optionsGroups.config.maxSelectableGroups != null) {
-    //   if ( this.getSelectedGroupsCount() >= this.optionsGroups.config.maxSelectableGroups ) {
-    //     // this.deselectAllGroups();
-    //     // group.isSelected = true;
-    //   }
-    // }
-
     this.optionsGroups.onOptionClicked(group, option, index);
   }
 
@@ -91,7 +95,9 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (event.checked) {
       // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
       if (this.optionsGroups.config.maxSelectableGroups != null) {
-        if ( this.getSelectedGroupsCount() >= this.optionsGroups.config.maxSelectableGroups ) {
+        console.log('fireeeee 1 ')
+        var test = this.getSelectedGroupsCount();
+        if ( this.getSelectedGroupsCount() > this.optionsGroups.config.maxSelectableGroups ) {
           this.deselectAllGroups();
           group.isSelected = true;
         }
