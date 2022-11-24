@@ -32,6 +32,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     console.log(this.optionsGroups);
   }
 
+  /**Method assgning an id to each group and each option. */
   assignIds() {
     this.optionsGroups.groups.forEach(group => {
       group.id = group.id ?? generateUUID();
