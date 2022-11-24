@@ -73,9 +73,13 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (!this.canCheckGroup(group)) group.isSelected = false;
     console.log('this.optionsGroups');
     console.log(this.optionsGroups);
-
-
-
+    // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
+    // if (this.optionsGroups.config.maxSelectableGroups != null) {
+    //   if ( this.getSelectedGroupsCount() >= this.optionsGroups.config.maxSelectableGroups ) {
+    //     // this.deselectAllGroups();
+    //     // group.isSelected = true;
+    //   }
+    // }
 
     this.optionsGroups.onOptionClicked(group, option, index);
   }
@@ -85,9 +89,12 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     let states = this.states.value;
     states = states ? states : [];
     if (event.checked) {
-      if (this.getSelectedGroupsCount() > 1) {
-        this.deselectAllGroups();
-        group.isSelected = true;
+      // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
+      if (this.optionsGroups.config.maxSelectableGroups != null) {
+        if ( this.getSelectedGroupsCount() >= this.optionsGroups.config.maxSelectableGroups ) {
+          this.deselectAllGroups();
+          group.isSelected = true;
+        }
       }
       // imposto a checked tutte le options del gruppo
       states.push(...group.options.map((row: MatOptionInfo) => row.name));
@@ -99,13 +106,12 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       group.options
         .map((row: MatOptionInfo) => row.name)
         .forEach((x: string) => states.splice(states.indexOf(x), 1));
-        group.options.forEach((option: MatOptionInfo) => {
-          option.isSelected = false;
-        });
+      group.options.forEach((option: MatOptionInfo) => {
+        option.isSelected = false;
+      });
     }
     this.states.setValue(states);
     group.isSelected = event.checked;
-
 
     console.log('this.optionsGroups');
     console.log(this.optionsGroups);
@@ -115,11 +121,14 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   /**Method to deselect all the groups actually selected */
   deselectAllGroups() {
-    return this.optionsGroups.groups.forEach((gtoup) => {
-      gtoup.isSelected = false;
-      gtoup.options.forEach((option) => {
-        option.isSelected = false;
-      });
+    return this.optionsGroups.groups.forEach((group) => {
+      let states = this.states.value;
+      states = states ? states : [];
+      group.isSelected = false;
+      // Deselezione delle options degli altri gruppi
+      group.options
+        .map((row: MatOptionInfo) => row.name)
+        .forEach((x: string) => states.splice(states.indexOf(x), 1));
     });
   }
 
