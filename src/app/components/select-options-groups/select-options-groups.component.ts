@@ -129,8 +129,9 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (this.optionsGroups.config.style == null) return;
     if (this.optionsGroups.config.style.whenOpened == null) return;
     this.getMaterialselectPanel().then((res: any) => {
-      // E' sicuro che il pannello sia presente sul DOM
+      // E' sicuro che il pannello sia presente sul DOM.
       // Definisco manualmente l'altezza della tendina
+      // TODO: usare res per cambiare lo stile del pannello
       const elements = document.querySelectorAll('.mat-select-panel');
       if (elements.length == 0) return;
       const first = elements[0] as HTMLElement;
