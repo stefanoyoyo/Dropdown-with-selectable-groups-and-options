@@ -21,12 +21,12 @@
           <mat-checkbox
             color="accent"
             [checked]="group.isSelected"
-            (change)="groupClicked($event, group)"
+            (change)="onGroupClicked($event, group)"
           >
             {{ group.groupName }}
           </mat-checkbox>
           <!-- Triangolo per l'apertura del gruppo -->
-          <button mat-button (click)="expandDocumentTypes(group)">
+          <button mat-button (click)="onExpandGroup(group)">
             <mat-icon>keyboard_arrow_down</mat-icon>
           </button>
         </div>
@@ -34,7 +34,7 @@
         <mat-option
           *ngFor="let name of group.options; let i = index"
           [value]="name"
-          (click)="optionClicked(group, name, i)"
+          (click)="onOptionClicked(group, name, i)"
           [ngClass]="
             optionsGroups.config.canCloseGroups
               ? group.isOpened

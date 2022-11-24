@@ -1,10 +1,7 @@
-import { BlockScrollStrategy, Overlay } from '@angular/cdk/overlay';
 import {
   AfterViewInit,
   Component,
-  ElementRef,
   Input,
-  OnInit,
   ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -48,22 +45,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     });
   }
 
-  /**Method opening / collapsing groups when the select icon is clicked */
-  public expandDocumentTypes(group: any) {
-    group.isOpened = !group.isOpened;
-  }
-
-  /**Method managing an option click from the select. */
-  public optionClicked(group: any, name: string, index?: number) {
-    const scrolltopBck = deepCopy(
-      this.latestScrollsTop[this.latestScrollsTop.length - 1]
-    );
-    this.selectPanel.scrollTop = scrolltopBck;
-    group.isSelected = true;
-    if (!this.canCheckGroup(group)) group.isSelected = false;
-    this.optionsGroups.onOptionClicked(group, name);
-  }
-
   /**Method determinating if the group toggle shold turn on or not. */
   public canCheckGroup(group: any): boolean {
     let groupOff = false;
@@ -75,8 +56,21 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     return groupOff;
   }
 
+  // #region events listeners
+
+  /**Method managing an option click from the select. */
+  public onOptionClicked(group: any, name: string, index?: number) {
+    const scrolltopBck = deepCopy(
+      this.latestScrollsTop[this.latestScrollsTop.length - 1]
+    );
+    this.selectPanel.scrollTop = scrolltopBck;
+    group.isSelected = true;
+    if (!this.canCheckGroup(group)) group.isSelected = false;
+    this.optionsGroups.onOptionClicked(group, name);
+  }
+
   /**Method managing an group click from the select. */
-  public groupClicked(event: any, group: any) {
+  public onGroupClicked(event: any, group: any) {
     let states = this.states.value;
     states = states ? states : [];
     if (event.checked) {
@@ -92,13 +86,20 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     console.log(group);
   }
 
+  /**Method opening / collapsing groups when the select icon is clicked */
+  public onExpandGroup(group: any) {
+    group.isOpened = !group.isOpened;
+  }
+
+  // #endregion
+
+  // #region methods
+
   openDropdown() {
     this.applyDropdownHeightWhenOpened();
     this.mySelect.open();
     this.optionsGroups.onSelectOpened();
   }
-
-  // #region check group
 
   /**Method to check a group and the options included into it. */
   private checkGroup(group: MatOptionsGroup) {
@@ -115,8 +116,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       if (group?.isSelected) this.checkGroup(group);
     });
   }
-
-  // #endregion
 
   /**Method making the select's height match to the specifications,
    * as the material input does not allow it by default.  */
@@ -158,9 +157,9 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       });
     }, 0);
   }
+  // #endregion
 
   //#endregion
-
 
 }
 
