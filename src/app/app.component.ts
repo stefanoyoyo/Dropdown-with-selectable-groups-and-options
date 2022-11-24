@@ -29,7 +29,7 @@ export class AppComponent {
       console.log('groupClicked callback called');
     },
 
-    onOptionClicked: function (group: any, option: any): void {
+    onOptionClicked: function (group: any, option: any, index?: number): void {
       console.log('optionClicked callback called');
     },
 

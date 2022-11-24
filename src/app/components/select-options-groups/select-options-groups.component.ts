@@ -59,14 +59,14 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   // #region events listeners
 
   /**Method managing an option click from the select. */
-  public onOptionClicked(group: any, name: string, index?: number) {
+  public onOptionClicked(group: any, name: string, index: number) {
     const scrolltopBck = deepCopy(
       this.latestScrollsTop[this.latestScrollsTop.length - 1]
     );
     this.selectPanel.scrollTop = scrolltopBck;
     group.isSelected = true;
     if (!this.canCheckGroup(group)) group.isSelected = false;
-    this.optionsGroups.onOptionClicked(group, name);
+    this.optionsGroups.onOptionClicked(group, name, index);
   }
 
   /**Method managing an group click from the select. */
@@ -194,7 +194,7 @@ export interface DropdownOptionsGroups {
 
   /**Callbacks */
   onGroupClicked: (group?: any) => void;
-  onOptionClicked: (group?: any, option?: any) => void;
+  onOptionClicked: (group?: any, option?: any, optionIndex?: number) => void;
   onSelectOpened: (componentData?: any) => void;
   onSelectClosed: (componentData?: any) => void;
 }
