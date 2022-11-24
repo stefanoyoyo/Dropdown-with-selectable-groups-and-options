@@ -29,10 +29,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
       // Quando esise il pannello sul DOM, porto lo scroll a 0
       this.scrollTopMatPanel();
-      console.log('this.optionsGroups');
-      console.log(this.optionsGroups);
-      console.log('this.states.value')
-      console.log(this.states.value)
     }, 0);
   }
 
