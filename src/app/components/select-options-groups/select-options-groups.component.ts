@@ -24,6 +24,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.applyDropdownHeightWhenOpened();
     // this.applyCheckboxColor();
     this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
+    // Quando esise il pannello sul DOM, porto lo scroll a 0
     this.getMaterialselectPanel().then((res) => {
       // Salvo un riferimento al pannello della tendina di material
       this.selectPanel = res;
