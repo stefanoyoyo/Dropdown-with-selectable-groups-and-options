@@ -8,6 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { deepCopy } from 'src/shared/objectHelper';
 
 @Component({
   selector: 'app-select-options-groups',
@@ -31,9 +32,10 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.applyDropdownHeightWhenOpened();
     // this.applyCheckboxColor();
     this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
-    // Mi salvo un riferiemtno al pannello della tendina di material
     setTimeout(() => {
+      // Salvo un riferimento al pannello della tendina di material
       this.selectPanel = this.mySelect.panel.nativeElement;
+      console.log(typeof(this.selectPanel))
       // Inizializzo lo scroll del pannello a 0
       this.selectPanel.scrollTop = 0;
     }, 0);
@@ -42,7 +44,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   registerPanelScrollEvent() {
     const panel = this.mySelect.panel.nativeElement;
     panel.addEventListener('scroll', (event: any) => {
-      console.log('fire push');
       this.latestScrollsTop.push(panel.scrollTop);
     });
   }
@@ -132,6 +133,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     }, 0);
   }
 
+  // #region still to implement
+
   /**Method making the select's height match to the specifications,
    * as the material input does not allow it by default.  */
   applyCheckboxColor() {
@@ -152,15 +155,10 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       });
     }, 0);
   }
-}
 
-export function deepCopy(obj: any) {
-  if (obj == null) return null;
-  return JSON.parse(JSON.stringify(obj));
-}
+  //#endregion
 
-export function scrollFactory(overlay: Overlay): () => BlockScrollStrategy {
-  return () => overlay.scrollStrategies.block();
+
 }
 
 export interface DropdownOptionsGroups {
