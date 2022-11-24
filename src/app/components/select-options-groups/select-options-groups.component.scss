@@ -9,8 +9,6 @@
   position: absolute;
 }
 
-
-
 mat-optgroup {
   position: relative;
   mat-option {
@@ -19,7 +17,9 @@ mat-optgroup {
   }
 }
 
-
+mat-icon {
+  margin-right: 5px !important;
+}
 
 .list-hide {
   height: 0 !important;
