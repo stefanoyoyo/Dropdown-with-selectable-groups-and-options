@@ -35,7 +35,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     setTimeout(() => {
       // Salvo un riferimento al pannello della tendina di material
       this.selectPanel = this.mySelect.panel.nativeElement;
-      console.log(typeof(this.selectPanel))
       // Inizializzo lo scroll del pannello a 0
       this.selectPanel.scrollTop = 0;
     }, 0);
