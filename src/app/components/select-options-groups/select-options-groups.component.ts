@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  Input,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { deepCopy } from 'src/shared/objectHelper';
 
@@ -29,12 +24,12 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.applyDropdownHeightWhenOpened();
     // this.applyCheckboxColor();
     this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
-    this.getMaterialselectPanel().then((res)=> {
+    this.getMaterialselectPanel().then((res) => {
       // Salvo un riferimento al pannello della tendina di material
       this.selectPanel = res;
       // Inizializzo lo scroll del pannello a 0
       this.selectPanel.scrollTop = 0;
-    })
+    });
   }
 
   /**Method listening to all scrolls requests applied on the material select */
@@ -45,36 +40,24 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     });
   }
 
-  /**Method determinating if the group toggle shold turn on or not. */
-  public canCheckGroup(group: any): boolean {
-    let groupOff = false;
-    for (const option of group.options) {
-      groupOff = groupOff || this.states?.value?.includes(option);
-      if (groupOff) return true;
-    }
-
-    return groupOff;
-  }
-
   // #region promises
 
   /**Method returning a promise listening to the material select panel
    * and returning it when ready on the page. */
-   async getMaterialselectPanel() {
+  async getMaterialselectPanel() {
     const promise = new Promise((resolve, reject) => {
       let interval = setInterval(() => {
-        console.log('blaa')
+        console.log('blaa');
         let selectPanel = this.mySelect.panel.nativeElement;
         if (selectPanel != null) {
           clearInterval(interval);
           resolve(selectPanel);
-        };
+        }
       }, 0);
     });
 
     return promise;
   }
-
 
   //#endregion
 
@@ -157,6 +140,17 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     }, 0);
   }
 
+  /**Method determinating if the group toggle shold turn on or not. */
+  public canCheckGroup(group: any): boolean {
+    let groupOff = false;
+    for (const option of group.options) {
+      groupOff = groupOff || this.states?.value?.includes(option);
+      if (groupOff) return true;
+    }
+
+    return groupOff;
+  }
+
   // #region still to implement
 
   /**Method making the select's height match to the specifications,
@@ -182,7 +176,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   // #endregion
 
   //#endregion
-
 }
 
 export interface DropdownOptionsGroups {
