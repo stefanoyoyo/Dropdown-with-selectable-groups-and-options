@@ -87,8 +87,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (!this.canCheckGroup(group)) group.isSelected = false;
     // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
     if (this.data.config.maxSelectableGroups != null) {
-      console.log('fireeeee 1 ')
-      var test = this.getSelectedGroupsCount();
       if (this.getSelectedGroupsCount() > this.data.config.maxSelectableGroups) {
         // this.deselectAllGroups();
         group.isSelected = true;
