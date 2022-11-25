@@ -1,7 +1,7 @@
-<div class="container" [style]="componentData.data.config.style?.whenClosed">
+<div class="container" [style]="data.config.style?.whenClosed">
   <!-- Tendina con i gruppi  -->
   <mat-form-field (click)="openDropdownProgrammatically()" appearance="fill">
-    <mat-label (click)="openDropdownProgrammatically()">{{ componentData.data.name }}</mat-label>
+    <mat-label (click)="openDropdownProgrammatically()">{{ data.name }}</mat-label>
     <mat-select (click)="openDropdownProgrammatically()" [formControl]="states" multiple #mySelect>
       <!-- Testo del placeholder al selezionare di una option -->
       <mat-select-trigger>
@@ -13,7 +13,7 @@
         </span>
       </mat-select-trigger>
       <!-- Creazione dei gruppi nella tendina -->
-      <mat-optgroup *ngFor="let group of componentData.data.groups; let i = index">
+      <mat-optgroup *ngFor="let group of data.groups; let i = index">
         <div>
           <!-- Triangolo per l'apertura del gruppo -->
           <button mat-button (click)="onExpandGroup(group)">
@@ -36,7 +36,7 @@
           [value]="option.id"
           (click)="onOptionClicked(group, option, i)"
           [ngClass]="
-            componentData.data.config.canCloseGroups
+            data.config.canCloseGroups
               ? group.isOpened
                 ? 'list-show'
                 : 'list-hide'

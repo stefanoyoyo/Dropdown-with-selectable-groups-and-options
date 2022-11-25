@@ -10,7 +10,7 @@ import { generateUUID, replaceAll } from 'src/shared/stringHelper.model';
 })
 export class SelectOptionsGroupsComponent implements AfterViewInit {
   @ViewChild('mySelect') mySelect: any;
-  @Input() componentData: ComponentData = {} as ComponentData;
+  @Input() data: DropdownOptionsGroups = {} as DropdownOptionsGroups;
   states = new FormControl();
 
   selectPanel: any;
@@ -36,7 +36,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   /**Method assgning an id to each group and each option. */
   assignIds(): void {
-    this.componentData.data.groups.forEach(group => {
+    this.data.groups.forEach(group => {
       group.id = group.id ?? generateUUID();
       group.options.forEach(option => {
         option.id = option.id ?? generateUUID();
@@ -86,15 +86,15 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     option.isSelected = !option.isSelected;
     if (!this.canCheckGroup(group)) group.isSelected = false;
     // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
-    if (this.componentData.data.config.maxSelectableGroups != null) {
+    if (this.data.config.maxSelectableGroups != null) {
       console.log('fireeeee 1 ')
       var test = this.getSelectedGroupsCount();
-      if (this.getSelectedGroupsCount() > this.componentData.data.config.maxSelectableGroups) {
+      if (this.getSelectedGroupsCount() > this.data.config.maxSelectableGroups) {
         // this.deselectAllGroups();
         group.isSelected = true;
         const grpOptions = group.options.map((row: MatOptionInfo) => row.id);
         const ammitted = this.states.value.filter((row: string) => grpOptions.includes(row));
-        this.componentData.data.groups.forEach(group => {
+        this.data.groups.forEach(group => {
           group.isSelected = false;
         });
         this.states.setValue(ammitted);
@@ -106,8 +106,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
 
     console.log('this.optionsGroups');
-    console.log(this.componentData);
-    this.componentData.data.onOptionClicked(group, option, index);
+    console.log(this.data);
+    this.data.onOptionClicked(group, option, index);
   }
 
   /**
@@ -151,8 +151,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     states = states ? states : [];
     if (event.checked) {
       // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
-      if (this.componentData.data.config.maxSelectableGroups != null) {
-        if (this.getSelectedGroupsCount() > this.componentData.data.config.maxSelectableGroups) {
+      if (this.data.config.maxSelectableGroups != null) {
+        if (this.getSelectedGroupsCount() > this.data.config.maxSelectableGroups) {
           this.deselectAllGroups();
           group.isSelected = true;
         }
@@ -175,16 +175,16 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     group.isSelected = event.checked;
 
     console.log('this.optionsGroups');
-    console.log(this.componentData);
+    console.log(this.data);
     console.log('this.states.value')
     console.log(this.states.value)
 
-    this.componentData.data.onGroupClicked(group);
+    this.data.onGroupClicked(group);
   }
 
   /**Method to deselect all the groups actually selected */
   deselectAllGroups() {
-    return this.componentData.data.groups.forEach((group) => {
+    return this.data.groups.forEach((group) => {
       let states = this.states.value;
       states = states ? states : [];
       group.isSelected = false;
@@ -197,7 +197,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   /**Method returning the number of selected groups */
   private getSelectedGroupsCount(): number {
-    return this.componentData.data.groups.filter((row) => row.isSelected).length + 1;
+    return this.data.groups.filter((row) => row.isSelected).length + 1;
   }
 
   /**Method opening / collapsing groups when the select icon is clicked */
@@ -216,7 +216,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.mySelect.open();
     // Quando esise il pannello della select sul DOM, porto lo scroll a 0
     this.scrollTopMatPanel();
-    this.componentData.data.onSelectOpened();
+    this.data.onSelectOpened();
   }
 
   private scrollTopMatPanel() {
@@ -252,8 +252,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   /**Method iterating all groups in order to check the ones marked as "check" */
   checkGroups() {
-    if (this.componentData.data.groups == null) return;
-    this.componentData.data.groups.forEach((group) => {
+    if (this.data.groups == null) return;
+    this.data.groups.forEach((group) => {
       if (group?.isSelected) {
         this.checkGroup(group, true);
         this.placeholderText = this.generatePlaceholderText(group);
@@ -267,10 +267,10 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   /**Method making the select's height match to the specifications,
    * as the material input does not allow it by default.  */
   applyDropdownHeightWhenOpened() {
-    if (this.componentData == null) return;
-    if (this.componentData.data.config == null) return;
-    if (this.componentData.data.config.style == null) return;
-    if (this.componentData.data.config.style.whenOpened == null) return;
+    if (this.data == null) return;
+    if (this.data.config == null) return;
+    if (this.data.config.style == null) return;
+    if (this.data.config.style.whenOpened == null) return;
     this.getMaterialselectPanel().then((res: any) => {
       // E' sicuro che il pannello sia presente sul DOM.
       // Definisco manualmente l'altezza della tendina
@@ -279,7 +279,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       if (elements.length == 0) return;
       const first = elements[0] as HTMLElement;
       first.style.maxHeight =
-        this.componentData.data.config.style?.whenOpened?.maxHeight ?? '';
+        this.data.config.style?.whenOpened?.maxHeight ?? '';
     });
   }
 
@@ -299,11 +299,11 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   /**Method making the select's height match to the specifications,
    * as the material input does not allow it by default.  */
   applyCheckboxColor() {
-    if (this.componentData == null) return;
-    if (this.componentData.data.config == null) return;
-    if (this.componentData.data.config.style == null) return;
-    if (this.componentData.data.config.style.whenOpened == null) return;
-    if (this.componentData.data.config.style.whenOpened.maxHeight == null) return;
+    if (this.data == null) return;
+    if (this.data.config == null) return;
+    if (this.data.config.style == null) return;
+    if (this.data.config.style.whenOpened == null) return;
+    if (this.data.config.style.whenOpened.maxHeight == null) return;
     setTimeout(() => {
       const classname =
         '.mat-checkbox-checked .mat-checkbox-background,.mat-checkbox-indeterminate .mat-checkbox-background';

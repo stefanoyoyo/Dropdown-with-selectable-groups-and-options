@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { optionsGroups } from 'src/mock-data/optionsGroups';
-import { ComponentData, DropdownOptionsGroups, MatOptionsGroup } from './components/select-options-groups/select-options-groups.component';
+import { ComponentData, DropdownOptionsGroups, MatOptionsGroup } from './components/common-filter/select-options-groups/select-options-groups.component';
 
 @Component({
   selector: 'app-root',
