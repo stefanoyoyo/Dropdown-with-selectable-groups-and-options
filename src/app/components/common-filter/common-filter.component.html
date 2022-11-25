@@ -1,5 +1,5 @@
-<mat-icon>{{ componentData.icon }}</mat-icon>
-<mat-label>{{ componentData.label }}</mat-label>
+<mat-icon *ngIf="componentData.icon != null">{{ componentData.icon }}</mat-icon>
+<mat-label *ngIf="componentData.label != null">{{ componentData.label }}</mat-label>
 <app-select-options-groups
   [data]="componentData.data"
 ></app-select-options-groups>
