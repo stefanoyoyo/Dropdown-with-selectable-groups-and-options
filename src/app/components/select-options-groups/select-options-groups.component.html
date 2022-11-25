@@ -5,7 +5,8 @@
     <mat-select (click)="openDropdownProgrammatically()" [formControl]="states" multiple #mySelect>
       <!-- Testo del placeholder al selezionare di una option -->
       <mat-select-trigger>
-        {{ states.value ? states.value[0] : "" }}
+        <!-- {{ states.value ? states.value[0] : "" }} -->
+        {{ placeholderText }}
         <span *ngIf="states.value?.length > 1" class="example-additional-selection">
           (+{{ states.value.length - 1 }}
           {{ states.value?.length === 2 ? "other" : "others" }})

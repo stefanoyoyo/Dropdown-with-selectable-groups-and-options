@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { deepCopy } from 'src/shared/objectHelper';
-import { generateUUID } from 'src/shared/stringHelper.model';
+import { generateUUID, replaceAll } from 'src/shared/stringHelper.model';
 
 @Component({
   selector: 'app-select-options-groups',
@@ -16,6 +16,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   selectPanel: any;
 
   latestScrollsTop: number[] = [0];
+
+  placeholderText: string = '';
 
   constructor() { }
 
@@ -100,9 +102,47 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       }
     }
 
+    this.placeholderText = this.generatePlaceholderText(group);
+
+
     console.log('this.optionsGroups');
     console.log(this.optionsGroups);
     this.optionsGroups.onOptionClicked(group, option, index);
+  }
+
+  /**
+   * Method generating the text of the placeholder
+   * @param group
+   * @param option
+   */
+  generatePlaceholderText(group: any): string {
+    const labels: string[] = this.getLabelsFromIds(group);
+    const placeholder: string = this.buildSelectPlaceholder(labels);
+
+    return placeholder;
+  }
+
+
+  /**Method building the placeholder to show in the select when options are selected. */
+  buildSelectPlaceholder(labels: string[]): string {
+    if (labels == null) return '';
+    let result = `${[...labels]}, `;
+    result = replaceAll(',' ,', ',result)
+    result = result.substring(0, result.length - 3);
+
+    return result;
+  }
+
+  /**Method getting the labels associated with the specified ids. */
+  private getLabelsFromIds(group: any) {
+    const labels: string[] = [];
+    for (const id of this.states.value) {
+      const foundOption = group.options.find((option: any) => option.id === id);
+      if (foundOption != null)
+        labels.push(foundOption.name);
+    }
+
+    return labels;
   }
 
   /**Method managing an group click from the select. */
@@ -112,8 +152,6 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (event.checked) {
       // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
       if (this.optionsGroups.config.maxSelectableGroups != null) {
-        console.log('fireeeee 1 ')
-        var test = this.getSelectedGroupsCount();
         if (this.getSelectedGroupsCount() > this.optionsGroups.config.maxSelectableGroups) {
           this.deselectAllGroups();
           group.isSelected = true;
@@ -138,6 +176,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
     console.log('this.optionsGroups');
     console.log(this.optionsGroups);
+    console.log('this.states.value')
+    console.log(this.states.value)
 
     this.optionsGroups.onGroupClicked(group);
   }
@@ -214,8 +254,13 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   checkGroups() {
     if (this.optionsGroups.groups == null) return;
     this.optionsGroups.groups.forEach((group) => {
-      if (group?.isSelected) this.checkGroup(group, true);
-      else this.checkGroup(group, false);
+      if (group?.isSelected) {
+        this.checkGroup(group, true);
+        this.placeholderText = this.generatePlaceholderText(group);
+      }
+      else {
+        this.checkGroup(group, false);
+      }
     });
   }
 
