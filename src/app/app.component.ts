@@ -11,8 +11,18 @@ export class AppComponent {
   title = 'SelectwithGroups';
 
   componentData: ComponentData = {
-    label: 'UNITED STATES',
-    icon: 'flag',
+    label: {
+      content: 'UNITED STATES',
+      style: {
+        color: 'red'
+      }
+    },
+    icon: {
+      content: 'flag',
+      style: {
+        color: 'red'
+      }
+    },
     data: {
       name: 'ciao mondo',
       config: {

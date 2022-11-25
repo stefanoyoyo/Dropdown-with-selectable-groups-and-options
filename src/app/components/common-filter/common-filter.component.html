@@ -1,5 +1,15 @@
-<mat-icon *ngIf="componentData.icon != null">{{ componentData.icon }}</mat-icon>
-<mat-label *ngIf="componentData.label != null">{{ componentData.label }}</mat-label>
+<mat-icon
+  [style]="componentData.icon?.style"
+  *ngIf="componentData.icon?.content != null">
+  {{ componentData.icon?.content }}
+</mat-icon>
+
+<mat-label
+  [style]="componentData.label?.style"
+  *ngIf="componentData.label?.content != null">
+  {{ componentData.label?.content }}
+</mat-label>
+
 <app-select-options-groups
   [data]="componentData.data"
 ></app-select-options-groups>

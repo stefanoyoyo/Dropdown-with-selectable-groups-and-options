@@ -322,8 +322,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 }
 
 export interface ComponentData {
-  label?: string;
-  icon?: string;
+  label?: FilterElement;
+  icon?: FilterElement;
   data: DropdownOptionsGroups;
 }
 
@@ -377,4 +377,9 @@ export interface DropdownOptionsGroupsStyleWhenOpened {
   maxHeight?: string;
   height?: string;
   minHeight?: string;
+}
+
+export interface FilterElement {
+  content: string;
+  style?: any;
 }
