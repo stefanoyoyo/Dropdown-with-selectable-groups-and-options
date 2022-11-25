@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { optionsGroups } from 'src/mock-data/optionsGroups';
-import { DropdownOptionsGroups, MatOptionsGroup } from './components/select-options-groups/select-options-groups.component';
+import { ComponentData, DropdownOptionsGroups, MatOptionsGroup } from './components/select-options-groups/select-options-groups.component';
 
 @Component({
   selector: 'app-root',
@@ -10,38 +10,42 @@ import { DropdownOptionsGroups, MatOptionsGroup } from './components/select-opti
 export class AppComponent {
   title = 'SelectwithGroups';
 
-  componentData: DropdownOptionsGroups = {
-    name: 'ciao mondo',
-    config: {
-      canCloseGroups: true,
-      maxSelectableGroups: 1,
-      style: {
-        whenClosed: {
-          width: '15em',
-        },
-        whenOpened: {
-          maxHeight: '75%',
+  componentData: ComponentData = {
+    label: 'UNITED STATES',
+    icon: 'flag',
+    data: {
+      name: 'ciao mondo',
+      config: {
+        canCloseGroups: true,
+        maxSelectableGroups: 1,
+        style: {
+          whenClosed: {
+            width: '15em',
+          },
+          whenOpened: {
+            maxHeight: '75%',
+          }
         }
+      },
+      groups: optionsGroups as MatOptionsGroup[],
+
+      onGroupClicked: function (group: any): void {
+        console.log('groupClicked callback called');
+      },
+
+      onOptionClicked: function (group: any, option: any, index?: number): void {
+        console.log('optionClicked callback called');
+      },
+
+      onSelectOpened: function (componentData?: any): void {
+        console.log('onSelectOpened callback called');
+      },
+
+      onSelectClosed: function (componentData?: any): void {
+        console.error('NOT YET IMPLEMENTED! ');
       }
-    },
-    groups: optionsGroups as MatOptionsGroup[],
-
-    onGroupClicked: function (group: any): void {
-      console.log('groupClicked callback called');
-    },
-
-    onOptionClicked: function (group: any, option: any, index?: number): void {
-      console.log('optionClicked callback called');
-    },
-
-    onSelectOpened: function (componentData?: any): void {
-      console.log('onSelectOpened callback called');
-    },
-
-    onSelectClosed: function (componentData?: any): void {
-      console.error('NOT YET IMPLEMENTED! ');
     }
-  };
+  }
 
   constructor() {
   }

@@ -1,6 +1,7 @@
 
 
-<mat-label>Unated states</mat-label>
+<mat-icon>{{ componentData.icon }}</mat-icon>
+<mat-label>{{ componentData.label }}</mat-label>
 <app-select-options-groups
-  [optionsGroups]="componentData"
+  [componentData]="componentData"
 ></app-select-options-groups>
