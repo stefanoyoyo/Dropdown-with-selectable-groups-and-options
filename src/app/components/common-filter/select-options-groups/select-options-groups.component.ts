@@ -24,6 +24,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.mySelect.open();
     this.assignIds();
+    // TODO: fix di questo timeout!
     setTimeout(() => {
       this.checkGroups();
       this.applyDropdownHeightWhenOpened();
@@ -303,10 +304,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (this.data.config.style == null) return;
     if (this.data.config.style.whenOpened == null) return;
     if (this.data.config.style.whenOpened.checkbox == null) return;
-    setTimeout(() => {
-      this.applyGroupsCheckboxColor();
-      this.applyOptionsCheckboxColor();
-    }, 0);
+    this.applyGroupsCheckboxColor();
+    this.applyOptionsCheckboxColor();
   }
 
   applyOptionsCheckboxColor() {
