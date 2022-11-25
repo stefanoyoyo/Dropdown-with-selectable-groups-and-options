@@ -27,7 +27,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     setTimeout(() => {
       this.checkGroups();
       this.applyDropdownHeightWhenOpened();
-      // this.applyCheckboxColor();
+      this.applyCheckboxColor();
       this.mySelect.openedChange.subscribe(() => this.registerPanelScrollEvent());
       // Quando esise il pannello sul DOM, porto lo scroll a 0
       this.scrollTopMatPanel();
@@ -302,16 +302,18 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (this.data.config == null) return;
     if (this.data.config.style == null) return;
     if (this.data.config.style.whenOpened == null) return;
-    if (this.data.config.style.whenOpened.maxHeight == null) return;
+    if (this.data.config.style.whenOpened.groupsCheckboxColor == null) return;
     setTimeout(() => {
-      const classname =
-        '.mat-checkbox-checked .mat-checkbox-background,.mat-checkbox-indeterminate .mat-checkbox-background';
+      // const classname =
+      //   '.mat-checkbox-checked .mat-checkbox-background,.mat-checkbox-indeterminate .mat-checkbox-background';
+        const classname =
+        '.mat-checkbox .mat-checkbox-frame';
       // Definisco manualmente l'altezza della tendina
       const elements = document.querySelectorAll(classname);
       if (elements.length == 0) return;
       elements.forEach((element) => {
         const el = element as HTMLElement;
-        el.style.background = '#deb456'; // Color from config.
+        el.style.background = this.data?.config?.style?.whenOpened?.groupsCheckboxColor ?? ''; // Color from config.
       });
     }, 0);
   }
@@ -376,6 +378,7 @@ export interface DropdownOptionsGroupsStyleWhenOpened {
   maxHeight?: string;
   height?: string;
   minHeight?: string;
+  groupsCheckboxColor?: string;
 }
 
 export interface FilterElement {

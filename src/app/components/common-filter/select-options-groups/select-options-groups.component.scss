@@ -47,10 +47,15 @@ mat-form-field {
 
 
 /* overwrite the checkbox background color */
-::ng-deep .mat-checkbox-checked .mat-checkbox-background,
-.mat-checkbox-indeterminate .mat-checkbox-background {
-  background-color: #deb456 !important;
-}
+// ::ng-deep .mat-checkbox-checked .mat-checkbox-background,
+// .mat-checkbox-indeterminate .mat-checkbox-background {
+//   background-color: #deb456 !important;
+// }
+
+// ::ng-deep .mat-checkbox .mat-checkbox-frame {
+//   // border-color: green;
+//   background-color: #deb456 !important;
+// }
 
 .example-additional-selection {
   opacity: 0.75;

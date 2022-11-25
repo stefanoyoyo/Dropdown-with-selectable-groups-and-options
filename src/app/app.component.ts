@@ -14,7 +14,8 @@ export class AppComponent {
     label: {
       content: 'UNITED STATES',
       style: {
-        color: 'red'
+        color: 'red',
+        width: '30em'
       }
     },
     icon: {
@@ -34,7 +35,9 @@ export class AppComponent {
           },
           whenOpened: {
             maxHeight: '75%',
-          }
+            groupsCheckboxColor: 'rgba(0,0,0,0.2)'
+          },
+
         }
       },
       groups: optionsGroups as MatOptionsGroup[],
