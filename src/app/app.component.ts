@@ -44,9 +44,5 @@ export class AppComponent {
   };
 
   constructor() {
-    // let time = 2500;
-    // setInterval(() => {
-    //   console.log(this.componentData)
-    // }, 2500);
   }
 }
