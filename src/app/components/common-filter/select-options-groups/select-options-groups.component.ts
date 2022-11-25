@@ -46,8 +46,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   /**Method listening to all scrolls requests applied on the material select */
   registerPanelScrollEvent() {
-    const panel = this.mySelect.panel.nativeElement;
-    panel.addEventListener('scroll', (event: any) => {
+    const panel = this.mySelect?.panel?.nativeElement;
+    panel?.addEventListener('scroll', (event: any) => {
       this.latestScrollsTop.push(panel.scrollTop);
     });
   }
