@@ -304,18 +304,30 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (this.data.config.style.whenOpened == null) return;
     if (this.data.config.style.whenOpened.groupsCheckboxColor == null) return;
     setTimeout(() => {
-      // const classname =
-      //   '.mat-checkbox-checked .mat-checkbox-background,.mat-checkbox-indeterminate .mat-checkbox-background';
-        const classname =
-        '.mat-checkbox .mat-checkbox-frame';
-      // Definisco manualmente l'altezza della tendina
-      const elements = document.querySelectorAll(classname);
-      if (elements.length == 0) return;
-      elements.forEach((element) => {
-        const el = element as HTMLElement;
-        el.style.background = this.data?.config?.style?.whenOpened?.groupsCheckboxColor ?? ''; // Color from config.
-      });
+      this.applyGroupsCheckboxColor();
+      this.applyOptionsCheckboxColor();
     }, 0);
+  }
+  applyOptionsCheckboxColor() {
+    const classname = '.mat-pseudo-checkbox';
+    // Definisco manualmente l'altezza della tendina
+    const elements = document.querySelectorAll(classname);
+    if (elements.length == 0) return;
+    elements.forEach((element) => {
+      const el = element as HTMLElement;
+      el.style.background = this.data?.config?.style?.whenOpened?.optionsCheckboxColor ?? ''; // Color from config.
+    });
+  }
+
+  applyGroupsCheckboxColor() {
+    const classname = '.mat-checkbox .mat-checkbox-frame';
+    // Definisco manualmente l'altezza della tendina
+    const elements = document.querySelectorAll(classname);
+    if (elements.length == 0) return;
+    elements.forEach((element) => {
+      const el = element as HTMLElement;
+      el.style.background = this.data?.config?.style?.whenOpened?.groupsCheckboxColor ?? ''; // Color from config.
+    });
   }
   // #endregion
 
@@ -379,6 +391,7 @@ export interface DropdownOptionsGroupsStyleWhenOpened {
   height?: string;
   minHeight?: string;
   groupsCheckboxColor?: string;
+  optionsCheckboxColor?: string; //
 }
 
 export interface FilterElement {
