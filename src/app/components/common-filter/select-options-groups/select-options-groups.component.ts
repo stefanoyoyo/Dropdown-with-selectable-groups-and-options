@@ -316,7 +316,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (elements.length == 0) return;
     elements.forEach((element) => {
       const el = element as HTMLElement;
-      el.style.background = this.data?.config?.style?.whenOpened?.checkbox.options.backgroundColor ?? ''; // Color from config.
+      el.style.background = this.data?.config?.style?.whenOpened?.checkbox?.options.backgroundColor ?? ''; // Color from config.
     });
   }
 
@@ -327,7 +327,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (elements.length == 0) return;
     elements.forEach((element) => {
       const el = element as HTMLElement;
-      el.style.background = this.data?.config?.style?.whenOpened?.checkbox.groups.backgroundColor ?? ''; // Color from config.
+      el.style.background = this.data?.config?.style?.whenOpened?.checkbox?.groups.backgroundColor ?? ''; // Color from config.
     });
   }
   // #endregion
@@ -391,7 +391,7 @@ export interface DropdownOptionsGroupsStyleWhenOpened {
   maxHeight?: string;
   height?: string;
   minHeight?: string;
-  checkbox: CheckboxStyle;
+  checkbox?: CheckboxStyle;
 }
 
 export interface CheckboxStyle {
