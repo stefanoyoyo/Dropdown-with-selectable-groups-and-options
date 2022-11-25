@@ -1,15 +1,16 @@
+<!-- Icona del filtro -->
 <mat-icon
   [style]="componentData.icon?.style"
   *ngIf="componentData.icon?.content != null">
   {{ componentData.icon?.content }}
 </mat-icon>
-
+<!-- Label descrittiva del filtro -->
 <mat-label
   [style]="componentData.label?.style"
   *ngIf="componentData.label?.content != null">
   {{ componentData.label?.content }}
 </mat-label>
-
+<!-- Tendina che compone il filtro -->
 <app-select-options-groups
   [data]="componentData.data"
 ></app-select-options-groups>
