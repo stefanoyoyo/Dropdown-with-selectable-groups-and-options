@@ -35,8 +35,14 @@ export class AppComponent {
           },
           whenOpened: {
             maxHeight: '75%',
-            groupsCheckboxColor: 'rgba(0,0,0,0.2)',
-            optionsCheckboxColor: 'rgba(255,0,0,0.2)'
+            checkbox: {
+              groups: {
+                backgroundColor: 'rgba(0,0,0,0.2)'
+              },
+              options: {
+                backgroundColor: 'rgba(255,0,0,0.2)'
+              }
+            }
           },
 
         }

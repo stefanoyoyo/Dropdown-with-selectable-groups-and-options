@@ -302,12 +302,13 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (this.data.config == null) return;
     if (this.data.config.style == null) return;
     if (this.data.config.style.whenOpened == null) return;
-    if (this.data.config.style.whenOpened.groupsCheckboxColor == null) return;
+    if (this.data.config.style.whenOpened.checkbox == null) return;
     setTimeout(() => {
       this.applyGroupsCheckboxColor();
       this.applyOptionsCheckboxColor();
     }, 0);
   }
+
   applyOptionsCheckboxColor() {
     const classname = '.mat-pseudo-checkbox';
     // Definisco manualmente l'altezza della tendina
@@ -315,7 +316,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (elements.length == 0) return;
     elements.forEach((element) => {
       const el = element as HTMLElement;
-      el.style.background = this.data?.config?.style?.whenOpened?.optionsCheckboxColor ?? ''; // Color from config.
+      el.style.background = this.data?.config?.style?.whenOpened?.checkbox.options.backgroundColor ?? ''; // Color from config.
     });
   }
 
@@ -326,7 +327,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     if (elements.length == 0) return;
     elements.forEach((element) => {
       const el = element as HTMLElement;
-      el.style.background = this.data?.config?.style?.whenOpened?.groupsCheckboxColor ?? ''; // Color from config.
+      el.style.background = this.data?.config?.style?.whenOpened?.checkbox.groups.backgroundColor ?? ''; // Color from config.
     });
   }
   // #endregion
@@ -390,8 +391,12 @@ export interface DropdownOptionsGroupsStyleWhenOpened {
   maxHeight?: string;
   height?: string;
   minHeight?: string;
-  groupsCheckboxColor?: string;
-  optionsCheckboxColor?: string; //
+  checkbox: CheckboxStyle;
+}
+
+export interface CheckboxStyle {
+  groups?: any;
+  options?: any;
 }
 
 export interface FilterElement {
