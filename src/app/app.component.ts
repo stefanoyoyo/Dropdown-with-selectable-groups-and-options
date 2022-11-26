@@ -27,6 +27,7 @@ export class AppComponent {
     data: {
       name: 'ciao mondo',
       config: {
+        canOpenOnComponentStart: false,
         canCloseGroups: true,
         maxSelectableGroups: 2,
         style: {

@@ -22,7 +22,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit(): void {
-    this.mySelect.open();
+    if (this.data.config.canOpenOnComponentStart) this.mySelect.open();
     this.assignIds();
     // TODO: fix di questo timeout!
     setTimeout(() => {
@@ -369,6 +369,7 @@ export interface MatOptionInfo {
 }
 
 export interface DropdownOptionsGroupsConfig {
+  canOpenOnComponentStart: boolean;
   canCloseGroups: boolean;
   style?: DropdownOptionsGroupsStyle;
   maxSelectableGroups?: number;

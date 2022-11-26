@@ -62,3 +62,9 @@ mat-form-field {
   font-size: 0.75em;
 }
 
+/**La linea della input viene visualizzata in basso come è giusto che sia
+(a volte viene visualizzata a metà della input)*/
+::ng-deep .mat-form-field-underline.ng-tns-c110-0.ng-star-inserted {
+  position: relative;
+  bottom: 0;
+}
