@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ConsoleHelper } from 'src/shared/consoleHelper';
 import { deepCopy } from 'src/shared/objectHelper';
 import { generateUUID, replaceAll } from 'src/shared/stringHelper.model';
 
@@ -18,6 +19,11 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   latestScrollsTop: number[] = [0];
 
   placeholderText: string = '';
+
+  /**Definisco se visualizzare i log o no */
+  consoleHelper: ConsoleHelper = new ConsoleHelper({
+    canShowLogs: false
+  });
 
   constructor() { }
 
@@ -60,7 +66,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
   async getMaterialselectPanel() {
     const promise = new Promise((resolve, reject) => {
       let interval = setInterval(() => {
-        let selectPanel = this.mySelect.panel.nativeElement;
+        let selectPanel = this.mySelect?.panel?.nativeElement;
         if (selectPanel != null) {
           clearInterval(interval);
           resolve(selectPanel);
@@ -77,8 +83,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
 
   /**Method managing an option click from the select. */
   public onOptionClicked(group: any, option: any, index: number) {
-    console.log('this.states.value');
-    console.log(this.states.value);
+    this.consoleHelper.log('this.states.value');
+    this.consoleHelper.log(this.states.value);
     const scrolltopBck = deepCopy(
       this.latestScrollsTop[this.latestScrollsTop.length - 1]
     );
@@ -105,8 +111,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.placeholderText = this.generatePlaceholderText(group);
 
 
-    console.log('this.optionsGroups');
-    console.log(this.data);
+    this.consoleHelper.log('this.optionsGroups');
+    this.consoleHelper.log(this.data);
     this.data.onOptionClicked(group, option, index);
   }
 
@@ -174,10 +180,10 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.states.setValue(states);
     group.isSelected = event.checked;
 
-    console.log('this.optionsGroups');
-    console.log(this.data);
-    console.log('this.states.value')
-    console.log(this.states.value)
+    this.consoleHelper.log('this.optionsGroups');
+    this.consoleHelper.log(this.data);
+    this.consoleHelper.log('this.states.value')
+    this.consoleHelper.log(this.states.value)
 
     this.data.onGroupClicked(group);
   }
