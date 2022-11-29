@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ConsoleHelper } from 'src/shared/consoleHelper';
 import { deepCopy } from 'src/shared/objectHelper';
@@ -9,7 +9,7 @@ import { generateUUID, replaceAll } from 'src/shared/stringHelper.model';
   templateUrl: './select-options-groups.component.html',
   styleUrls: ['./select-options-groups.component.scss'],
 })
-export class SelectOptionsGroupsComponent implements AfterViewInit {
+export class SelectOptionsGroupsComponent implements OnInit, AfterViewInit {
   @ViewChild('mySelect') mySelect: any;
   @Input() data: DropdownOptionsGroups = {} as DropdownOptionsGroups;
   states = new FormControl();
@@ -25,11 +25,15 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     canShowLogs: false
   });
 
-  constructor() { }
+  constructor() {
+  }
+
+  ngOnInit(): void {
+    this.checkInputData();
+  }
 
   ngAfterViewInit(): void {
     if (this.data.config.canOpenOnComponentStart) this.mySelect.open();
-    this.assignIds();
     // TODO: fix di questo timeout!
     setTimeout(() => {
       this.checkGroups();
@@ -41,6 +45,35 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     }, 0);
   }
 
+  // #region check input data
+
+  /**Method checking input data */
+  private checkInputData() {
+    this.assignIds();
+    this.validateInputData();
+  }
+
+  /**Method validating input data in order to avoid errors */
+  validateInputData() {
+    console.log('fire');
+    if (this.data.groups == null) this.data.groups = [];
+    if (this.data.groups.length === 0) return;
+    this.data.groups.forEach((group: MatOptionsGroup) => {
+      if(group.groupName == null) group.groupName = 'no_group_name';
+      if (group.isSelected == null) group.isSelected = false;
+      if (group.isOpened == null) group.isOpened = false;
+      if (group.icon == null) group.icon = 'close';
+      if (group.options == null) group.options = [];
+      // Controllo le opzioni
+      group.options.forEach((option: MatOptionInfo) => {
+        if (option.name == null) option.name = 'no_name';
+        if (option.isSelected == null) option.isSelected = false;
+        if (option.icon == null) option.icon = 'close';
+      });
+    });
+
+  }
+
   /**Method assgning an id to each group and each option. */
   assignIds(): void {
     this.data.groups.forEach(group => {
@@ -50,6 +83,8 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
       });
     });
   }
+
+  // #endregion
 
   /**Method listening to all scrolls requests applied on the material select */
   registerPanelScrollEvent() {
@@ -91,7 +126,7 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
     this.selectPanel.scrollTop = scrolltopBck;
     group.isSelected = true;
     option.isSelected = !option.isSelected;
-    if (!this.canCheckGroup(group)) group.isSelected = false;
+    if (!this.canCheckGroup(group)) this.checkGroup(group, false);
     // Se la configurazione prevede un limite massimo ai gruppi selezionati, deseleziono gli altri
     if (this.data.config.maxSelectableGroups != null) {
       const selGroupsCount = this.getSelectedGroupsCount() - 1;
@@ -99,12 +134,17 @@ export class SelectOptionsGroupsComponent implements AfterViewInit {
         // this.deselectAllGroups();
         group.isSelected = true;
         const grpOptions = group.options.map((row: MatOptionInfo) => row.id);
+        // Deseleziono tutti i gruppi e le sue options tranne quelli ammessi
         const ammitted = this.states.value.filter((row: string) => grpOptions.includes(row));
         this.data.groups.forEach(group => {
           group.isSelected = false;
+          group.options.forEach((option: MatOptionInfo) => {
+            option.isSelected = false;
+          });
         });
         this.states.setValue(ammitted);
         group.isSelected = true;
+        option.isSelected = !option.isSelected;
       }
     }
 
